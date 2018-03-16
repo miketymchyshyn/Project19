@@ -13,7 +13,6 @@
 		622441852051A50D0028ED39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622441842051A50D0028ED39 /* Assets.xcassets */; };
 		622441882051A50D0028ED39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622441862051A50D0028ED39 /* LaunchScreen.storyboard */; };
 		622441912051A75D0028ED39 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 622441902051A75D0028ED39 /* MapKit.framework */; };
-		622441932051AA690028ED39 /* Capital.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622441922051AA690028ED39 /* Capital.swift */; };
 		622441952056FC370028ED39 /* WhereToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622441942056FC370028ED39 /* WhereToViewController.swift */; };
 		62244197205828370028ED39 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62244196205828370028ED39 /* LocationTableViewCell.swift */; };
 		6224419B205850A00028ED39 /* RequsetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224419A205850A00028ED39 /* RequsetManager.swift */; };
@@ -34,7 +33,6 @@
 		622441872051A50D0028ED39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		622441892051A50D0028ED39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		622441902051A75D0028ED39 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		622441922051AA690028ED39 /* Capital.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capital.swift; sourceTree = "<group>"; };
 		622441942056FC370028ED39 /* WhereToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereToViewController.swift; sourceTree = "<group>"; };
 		62244196205828370028ED39 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		6224419A205850A00028ED39 /* RequsetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequsetManager.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				622441892051A50D0028ED39 /* Info.plist */,
 				6224417D2051A50D0028ED39 /* AppDelegate.swift */,
 				6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */,
-				622441922051AA690028ED39 /* Capital.swift */,
 				622441812051A50D0028ED39 /* Main.storyboard */,
 				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
 				62244196205828370028ED39 /* LocationTableViewCell.swift */,
@@ -204,7 +201,6 @@
 				622441A92059305A0028ED39 /* Route.swift in Sources */,
 				6224417E2051A50D0028ED39 /* AppDelegate.swift in Sources */,
 				6224419B205850A00028ED39 /* RequsetManager.swift in Sources */,
-				622441932051AA690028ED39 /* Capital.swift in Sources */,
 				622441A320592A320028ED39 /* Driver.swift in Sources */,
 				622441AB205957870028ED39 /* RouteDescriptionViewController.swift in Sources */,
 				6224419F2058532A0028ED39 /* RouteTableViewCell.swift in Sources */,

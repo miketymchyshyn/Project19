@@ -94,7 +94,6 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
             self?.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
             
             let rect = route.polyline.boundingMapRect
-            //TODO: make this adjustment in some sensible
             self?.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
         }
     }

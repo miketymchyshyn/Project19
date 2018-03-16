@@ -64,7 +64,7 @@ class RoutesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SegueToViewRouteDescription", sender: nil)
+        performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
     }
 
     /*
@@ -102,14 +102,16 @@ class RoutesTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let descriptionVC = segue.destination as? RouteDescriptionViewController, let route = sender as? Route {
+            descriptionVC.route = route
+        }
     }
-    */
+ 
 
 }
