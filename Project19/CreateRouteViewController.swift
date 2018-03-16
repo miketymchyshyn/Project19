@@ -134,7 +134,7 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     }
     
     //MARK: - Crate Route
-    @IBAction func createRoute(sender: UIButton){
+    @IBAction func createRoute(sender: UIButton) {
         //TODO: find out how to format and send route info.
         //Package two MKPointAnnotations: start anntoation and end annotation
         //Package MKRoute with them.
