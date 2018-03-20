@@ -11,7 +11,14 @@ import UIKit
 let routeCellIdentifier = "RouteCell"
 
 class RoutesTableViewController: UITableViewController {
+    
+    var loggedInUser: User!
+    
 
+    
+    @IBAction func userDetails(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "SegueToUserDetails", sender: sender)
+    }
     var routes = [Route]()
     
     override func viewDidLoad() {
@@ -21,9 +28,13 @@ class RoutesTableViewController: UITableViewController {
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        //TODO: debug mockup
+        let muser = User(name: "David Mockup")
+        muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
+        loggedInUser = muser
     }
     @objc func refreshRoutes(){
         routes = RequestManager.shared.getRoutes()
@@ -31,13 +42,7 @@ class RoutesTableViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -110,6 +115,9 @@ class RoutesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if let descriptionVC = segue.destination as? RouteDescriptionViewController, let route = sender as? Route {
             descriptionVC.route = route
+        }
+        if let userDetailsVC = segue.destination as? UserDetailsTableViewController {
+            userDetailsVC.user = loggedInUser
         }
     }
  

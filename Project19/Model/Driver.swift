@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+// Actual driver for the route.
+// Is a User
+
 class Driver {
     let driverID: String
     

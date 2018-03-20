@@ -14,6 +14,7 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     var route: Route!
     
+    //Little white square in a middle of map view. 
     @IBOutlet weak var centerView: UIView!
     
     //private properties
@@ -22,7 +23,6 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     @IBAction func placeAnnotation(sender: UIButton) {
         placeProposedPickupLocation()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +40,7 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         }
         drawRouteOnMap()
     }
-    
-    func drawRouteOnMap() {
-        mapView.add((route.path.route.polyline), level: MKOverlayLevel.aboveRoads)
-        let rect = route.path.route.polyline.boundingMapRect
-        mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-    }
+
     
 
     /*
@@ -75,6 +70,10 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     //            print("off line")
     //        }
     
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    }
+    
+    // MARK: - Private methods
     private func placeProposedPickupLocation() {
         mapView.removeAnnotations(mapView.annotations)
         let pickupCoordinate = CLLocationCoordinate2D(latitude: mapView.convert(mapView.center, toCoordinateFrom: mapView).latitude, longitude: mapView.convert(mapView.center, toCoordinateFrom: mapView).longitude)
@@ -130,8 +129,11 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         //mapView.showAnnotations([closestPoint1, closestPoint2, proposedpickupAnnotation], animated: true)
         mapView.showAnnotations([proposedpickupAnnotation], animated: true)
     }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+
+    private func drawRouteOnMap() {
+        mapView.add((route.path.route.polyline), level: MKOverlayLevel.aboveRoads)
+        let rect = route.path.route.polyline.boundingMapRect
+        mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
     }
 }
 
