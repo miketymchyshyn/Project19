@@ -1,15 +1,19 @@
 //
-//  RegistrationViewController.swift
+//  RouteViewController.swift
 //  Project19
 //
-//  Created by Mykhailo Tymchyshyn on 3/16/18.
+//  Created by Mykhailo Tymchyshyn on 3/14/18.
 //  Copyright © 2018 Mykhailo Tymchyshyn. All rights reserved.
 //
 
 import UIKit
+import MapKit
 
-class RegistrationViewController: UIViewController {
-
+class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
+    
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
