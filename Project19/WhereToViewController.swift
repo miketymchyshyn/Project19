@@ -11,11 +11,35 @@ import MapKit
 
 let locationCellIdentifier = "LocationCell"
 
+let defaultFieldSpacing: CGFloat = 8
+let defaultFieldHeight: CGFloat = 30
+
 class WhereToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var whereToField: UITextField!
+    @IBOutlet weak var fromWhereField: UITextField!
+    @IBOutlet weak var addStopStackView: UIStackView!
+    
+    @IBOutlet weak var addStopField: UITextField!
+    @IBOutlet weak var spacingBetweenFromWhereAndWhereTo: NSLayoutConstraint!
+    @IBOutlet weak var addStopButtonOutlet: UIButton!
+    
+    @IBAction func addStopButton(_ sender: UIButton) {
+        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing
+        addStopStackView.isHidden = false
+        addStopButtonOutlet.isHidden = true
+    }
+    
+    @IBAction func deleteStopButton(_ sender: UIButton) {
+        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
+        addStopStackView.isHidden = true
+        addStopButtonOutlet.isHidden = false
+    }
+    
     @IBOutlet weak var tableView: UITableView!
+    
+
     
     var currentMapRegion: MKCoordinateRegion!
     private var requsetRelatedMapItems = [MKMapItem]()
@@ -27,29 +51,14 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         topView.addGestureRecognizer(swipeGestureRecognizer)
         whereToField.becomeFirstResponder()
         whereToField.delegate = self
+        fromWhereField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
+        addStopField.delegate = self
+        
+        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: - UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,7 +66,6 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //#incomplete implementation
         return requsetRelatedMapItems.count
     }
     
@@ -92,16 +100,16 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(presentingViewController)
         if let presentingNavVC = presentingViewController as? UINavigationController {
             if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
             //create and show route
+                //TODO: make new method that handles route creation form route struct
             presentingVC.showRouteOnMap(to: requsetRelatedMapItems[indexPath.row].placemark.coordinate)
             
             //hide some views, show some other views
             presentingVC.whereToView.isHidden = true
             presentingVC.timePickerView.isHidden = false
-            presentingVC.cancelButton.isHidden = false
+//          presentingVC.cancelButton.isHidden = false
             
             //modifi constraints
             presentingVC.MVtoBottom.constant = -161

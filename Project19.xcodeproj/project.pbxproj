@@ -30,6 +30,9 @@
 		62A0AFEB20601DFA00C3BE5E /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEA20601DFA00C3BE5E /* CarTableViewCell.swift */; };
 		62A0AFED2060206500C3BE5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEC2060206500C3BE5E /* User.swift */; };
 		62A0AFEF206020FE00C3BE5E /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEE206020FE00C3BE5E /* Car.swift */; };
+		62A2A1BE2062A52800EFF020 /* BuckoNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A1BB2062A52800EFF020 /* BuckoNetworking.framework */; };
+		62A2A1BF2062A52800EFF020 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A1BC2062A52800EFF020 /* PromiseKit.framework */; };
+		62A2A1C02062A52800EFF020 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A1BD2062A52800EFF020 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,13 @@
 		62A0AFEA20601DFA00C3BE5E /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		62A0AFEC2060206500C3BE5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		62A0AFEE206020FE00C3BE5E /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		62A2A1B22062A10600EFF020 /* Checkouts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Checkouts; path = Carthage/Checkouts; sourceTree = "<group>"; };
+		62A2A1B42062A11600EFF020 /* PromiseKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PromiseKit; path = Carthage/Checkouts/PromiseKit; sourceTree = "<group>"; };
+		62A2A1B52062A11600EFF020 /* BuckoNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BuckoNetworking; path = Carthage/Checkouts/BuckoNetworking; sourceTree = "<group>"; };
+		62A2A1B62062A11600EFF020 /* Alamofire */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Alamofire; path = Carthage/Checkouts/Alamofire; sourceTree = "<group>"; };
+		62A2A1BB2062A52800EFF020 /* BuckoNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuckoNetworking.framework; path = Carthage/Build/iOS/BuckoNetworking.framework; sourceTree = "<group>"; };
+		62A2A1BC2062A52800EFF020 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		62A2A1BD2062A52800EFF020 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A2A1BE2062A52800EFF020 /* BuckoNetworking.framework in Frameworks */,
+				62A2A1BF2062A52800EFF020 /* PromiseKit.framework in Frameworks */,
+				62A2A1C02062A52800EFF020 /* Alamofire.framework in Frameworks */,
 				622441912051A75D0028ED39 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +124,13 @@
 		6224418F2051A75D0028ED39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				62A2A1BD2062A52800EFF020 /* Alamofire.framework */,
+				62A2A1BB2062A52800EFF020 /* BuckoNetworking.framework */,
+				62A2A1BC2062A52800EFF020 /* PromiseKit.framework */,
+				62A2A1B62062A11600EFF020 /* Alamofire */,
+				62A2A1B52062A11600EFF020 /* BuckoNetworking */,
+				62A2A1B42062A11600EFF020 /* PromiseKit */,
+				62A2A1B22062A10600EFF020 /* Checkouts */,
 				622441902051A75D0028ED39 /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -169,6 +189,7 @@
 				622441762051A50D0028ED39 /* Sources */,
 				622441772051A50D0028ED39 /* Frameworks */,
 				622441782051A50D0028ED39 /* Resources */,
+				62A2A1BA2062A1A400EFF020 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -230,6 +251,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		62A2A1BA2062A1A400EFF020 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/BuckoNetworking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/BuckoNetworking.framework",
+				"$(DERIVED_FILE_DIR)/Alamofire.framework",
+				"$(DERIVED_FILE_DIR)/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		622441762051A50D0028ED39 /* Sources */ = {
@@ -393,6 +436,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SZHXKE4BG2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Project19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.leobit.Project19;
@@ -408,6 +455,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SZHXKE4BG2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Project19/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.leobit.Project19;

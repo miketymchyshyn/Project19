@@ -10,11 +10,13 @@
 // How should I structure data for backend ?
 
 // Hollow thing. Just simulating adding and getting a route.
+
 import Foundation
 import MapKit
 
 class RequestManager {
     
+    //Routes part. Yet to conver to HTTP mockups
     static let shared = RequestManager()
     
     private var routes = [Route]()
@@ -26,4 +28,15 @@ class RequestManager {
     func getRoutes() -> [Route] {
         return routes
     }
+    
+    //User part.
+    
+    func createUser() {
+        //
+    }
+    
+    func addUserPhoto() {
+        
+    }
+    
 }
