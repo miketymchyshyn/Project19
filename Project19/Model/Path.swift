@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-struct Path {
+class Path {
     let startLocation: CLLocationCoordinate2D
     let startLocationDescription: String
     let endLocation: CLLocationCoordinate2D
