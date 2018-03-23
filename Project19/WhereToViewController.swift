@@ -42,6 +42,8 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
 
     
     var currentMapRegion: MKCoordinateRegion!
+    
+    //map items that are displayed while you type in locaion name.
     private var requsetRelatedMapItems = [MKMapItem]()
     
     override func viewDidLoad() {
@@ -49,6 +51,7 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeGestureRecognizer.direction = .down
         topView.addGestureRecognizer(swipeGestureRecognizer)
+        
         whereToField.becomeFirstResponder()
         whereToField.delegate = self
         fromWhereField.delegate = self
@@ -57,7 +60,6 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         addStopField.delegate = self
         
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
-
     }
     
     // MARK: - UITableViewDataSource
@@ -102,14 +104,17 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let presentingNavVC = presentingViewController as? UINavigationController {
             if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
-            //create and show route
-                //TODO: make new method that handles route creation form route struct
+            
+                //create and show route
+            // TODO: make new method that handles route creation form path struct
+                // TODO: update Path struct to new format.
             presentingVC.showRouteOnMap(to: requsetRelatedMapItems[indexPath.row].placemark.coordinate)
             
             //hide some views, show some other views
             presentingVC.whereToView.isHidden = true
             presentingVC.timePickerView.isHidden = false
-//          presentingVC.cancelButton.isHidden = false
+            // enable cancel button in Create Route View Controller.
+            presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
             
             //modifi constraints
             presentingVC.MVtoBottom.constant = -161
@@ -122,7 +127,7 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: HandleSwipe
     @objc
-    func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer){
+    private func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer){
         if gestureRecognizer.state == .ended {
             whereToField.resignFirstResponder()
             presentingViewController?.dismiss(animated: true, completion: nil)

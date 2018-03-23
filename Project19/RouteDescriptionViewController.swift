@@ -61,15 +61,6 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         return renderer
     }
     
-    //        let polylineRenderer = MKPolylineRenderer(polyline: route.path.route.polyline)
-    //        let pickupMapPoint = MKMapPointForCoordinate(pickupCoordinate)
-    //        let point = polylineRenderer.point(for: pickupMapPoint)
-    //        if polylineRenderer.path.contains(point) {
-    //            print("on line")
-    //        } else {
-    //            print("off line")
-    //        }
-    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     }
     

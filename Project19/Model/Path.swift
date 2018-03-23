@@ -9,13 +9,13 @@
 import Foundation
 import MapKit
 
-class Path {
+struct Path {
     let startLocation: CLLocationCoordinate2D
     let startLocationDescription: String
     let endLocation: CLLocationCoordinate2D
     let endLocationDescription: String
     let route: MKRoute
-    
+
     init(startLocation: CLLocationCoordinate2D, startLocationDescription: String, endLocation: CLLocationCoordinate2D, endLocationDescription: String, route: MKRoute) {
         self.startLocation = startLocation
         self.startLocationDescription = startLocationDescription

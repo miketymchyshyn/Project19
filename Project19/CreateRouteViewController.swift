@@ -16,8 +16,6 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     @IBOutlet weak var whereToTextField: UITextField!
     
     @IBOutlet weak var timePickerView: UIView!
- 
-
     
     private var path: Path?
     
@@ -37,18 +35,23 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelRouteCreation))
+        
+        
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     
-    @objc func cancelRouteCreation(){
+    @objc func cancelRouteCreation() {
         timePickerView.isHidden = true
         whereToView.isHidden = false
-        //TODO: sensible comstraint change
         MVtoBottom.constant = 0
         removeRoute()
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-        // MARK: - showRouteOnMap        
+        // MARK: - showRouteOnMap
+    
+    ///deprecated
     func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
         
         let sourcePlacemark = MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil)
@@ -103,10 +106,14 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         }
     }
     
+    ///deprecated
     func showRouteOnMap(to destinationCoordinate: CLLocationCoordinate2D){
         showRouteOnMap(pickupCoordinate: mapView.userLocation.coordinate, destinationCoordinate: destinationCoordinate)
     }
     
+    func showRouteOnMap() {
+        
+    }
     
     
     

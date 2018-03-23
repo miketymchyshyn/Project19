@@ -13,13 +13,11 @@ let routeCellIdentifier = "RouteCell"
 class RoutesTableViewController: UITableViewController {
     
     var loggedInUser: User!
-    
-
+    var routes = [Route]()
     
     @IBAction func userDetails(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "SegueToUserDetails", sender: sender)
     }
-    var routes = [Route]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +29,15 @@ class RoutesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        //TODO: debug mockup
+        
+        //TODO: load user from back end. send GET reguest with saved user token if token avaliable.
+        
+        //debug mockup
         let muser = User(name: "David Mockup")
         muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
         loggedInUser = muser
     }
-    @objc func refreshRoutes(){
+    @objc func refreshRoutes() {
         routes = RequestManager.shared.getRoutes()
         tableView.reloadData()
         self.refreshControl?.endRefreshing()
