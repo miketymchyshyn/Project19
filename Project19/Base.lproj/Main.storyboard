@@ -124,6 +124,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addRouteButton" destination="JkI-1c-HI9" id="0aD-cR-e63"/>
                         <segue destination="Xoh-tj-kvf" kind="show" identifier="SegueToViewRouteDescription" id="UjM-fB-6vh"/>
                         <segue destination="p7d-Tg-nVu" kind="show" identifier="SegueToUserDetails" id="z8h-Ac-5Gn"/>
                     </connections>
@@ -651,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZEC-sq-j6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4215" y="269"/>
+            <point key="canvasLocation" x="-4151" y="-26"/>
         </scene>
         <!--Details-->
         <scene sceneID="gaa-ov-k1p">

@@ -25,6 +25,9 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var spacingBetweenFromWhereAndWhereTo: NSLayoutConstraint!
     @IBOutlet weak var addStopButtonOutlet: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
+    var currentMapRegion: MKCoordinateRegion!
+    
     @IBAction func addStopButton(_ sender: UIButton) {
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing
         addStopStackView.isHidden = false
@@ -36,15 +39,10 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         addStopStackView.isHidden = true
         addStopButtonOutlet.isHidden = false
     }
-    
-    @IBOutlet weak var tableView: UITableView!
-    
 
-    
-    var currentMapRegion: MKCoordinateRegion!
-    
     //map items that are displayed while you type in locaion name.
     private var requsetRelatedMapItems = [MKMapItem]()
+    private var path = Path()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,26 +100,37 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let presentingNavVC = presentingViewController as? UINavigationController {
-            if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
+        if whereToField.isFirstResponder {
+            if let presentingNavVC = presentingViewController as? UINavigationController {
+                if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
+                    
+                    //create and show route
+                    path.destination = requsetRelatedMapItems[indexPath.row].placemark.coordinate
+                    path.destinationLocationDescription = requsetRelatedMapItems[indexPath.row].name
+                    
+                    presentingVC.showRouteOnMap(path: path)
+                    
+                    //hide some views, show some other views
+                    presentingVC.whereToView.isHidden = true
+                    presentingVC.timePickerView.isHidden = false
+                    presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
+                    
+                    //modifi constraints
+                    presentingVC.MVtoBottom.constant = -161
+                    
+                    //dismiss route picking controller
+                    presentingVC.dismiss(animated: true, completion: nil)
+                }
+            }
+        } else if fromWhereField.isFirstResponder {
+            path.from = requsetRelatedMapItems[indexPath.row].placemark.coordinate
+            path.fromLocationDescription = requsetRelatedMapItems[indexPath.row].name
+            fromWhereField.text = requsetRelatedMapItems[indexPath.row].name
             
-                //create and show route
-            // TODO: make new method that handles route creation form path struct
-                // TODO: update Path struct to new format.
-            presentingVC.showRouteOnMap(to: requsetRelatedMapItems[indexPath.row].placemark.coordinate)
-            
-            //hide some views, show some other views
-            presentingVC.whereToView.isHidden = true
-            presentingVC.timePickerView.isHidden = false
-            // enable cancel button in Create Route View Controller.
-            presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
-            
-            //modifi constraints
-            presentingVC.MVtoBottom.constant = -161
-            
-            //dismiss route picking controller
-            presentingVC.dismiss(animated: true, completion: nil)
-        }
+        } else if addStopField.isFirstResponder {
+            path.stop = requsetRelatedMapItems[indexPath.row].placemark.coordinate
+            path.stopLocationDescription = requsetRelatedMapItems[indexPath.row].name
+            addStopField.text = requsetRelatedMapItems[indexPath.row].name
         }
     }
     

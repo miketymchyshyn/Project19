@@ -17,8 +17,7 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     //Little white square in a middle of map view. 
     @IBOutlet weak var centerView: UIView!
     
-    //private properties
-    var mappoints = [MKMapPoint]()
+    private var mappoints = [MKMapPoint]()
     
     @IBAction func placeAnnotation(sender: UIButton) {
         placeProposedPickupLocation()
@@ -27,16 +26,17 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        let pointcount = route.path.route.polyline.pointCount
+        //TODO: change for handling multiple routes.
+        for route in route.routes {
+        let pointcount = route.polyline.pointCount
         let cllocationcoordinate2Dpointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: pointcount)
         let range = NSRange(location: 0, length: pointcount)
-        print( route.path.route.polyline.getCoordinates(cllocationcoordinate2Dpointer, range: range))
+        print( route.polyline.getCoordinates(cllocationcoordinate2Dpointer, range: range))
         print(cllocationcoordinate2Dpointer)
         for i in 0..<pointcount {
             let mapPoint = MKMapPoint(x: cllocationcoordinate2Dpointer[i].latitude, y: cllocationcoordinate2Dpointer[i].longitude)
             mappoints.append(mapPoint)
-//            show annotations on map
-//            mapView.showAnnotations([mappointannotation], animated: true)
+            }
         }
         drawRouteOnMap()
     }
@@ -65,6 +65,7 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: - Private methods
+    //proposed pick up location does its calculations based on mappoints retrieved form MKRoute object
     private func placeProposedPickupLocation() {
         mapView.removeAnnotations(mapView.annotations)
         let pickupCoordinate = CLLocationCoordinate2D(latitude: mapView.convert(mapView.center, toCoordinateFrom: mapView).latitude, longitude: mapView.convert(mapView.center, toCoordinateFrom: mapView).longitude)
@@ -122,9 +123,11 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     }
 
     private func drawRouteOnMap() {
-        mapView.add((route.path.route.polyline), level: MKOverlayLevel.aboveRoads)
-        let rect = route.path.route.polyline.boundingMapRect
-        mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        for route in route.routes {
+            mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            let rect = route.polyline.boundingMapRect
+            mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
     }
 }
 

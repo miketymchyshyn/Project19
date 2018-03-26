@@ -15,6 +15,8 @@ class RoutesTableViewController: UITableViewController {
     var loggedInUser: User!
     var routes = [Route]()
     
+    @IBOutlet weak var addRouteButton: UIBarButtonItem!
+    
     @IBAction func userDetails(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "SegueToUserDetails", sender: sender)
     }
@@ -23,19 +25,20 @@ class RoutesTableViewController: UITableViewController {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshRoutes), for: .valueChanged)
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        
-        //TODO: load user from back end. send GET reguest with saved user token if token avaliable.
-        
         //debug mockup
         let muser = User(name: "David Mockup")
         muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
         loggedInUser = muser
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addRouteButton.isEnabled = loggedInUser.cars.count > 0 ? true : false
     }
     @objc func refreshRoutes() {
         routes = RequestManager.shared.getRoutes()
@@ -62,8 +65,8 @@ class RoutesTableViewController: UITableViewController {
         let route = routes[indexPath.row]
         routeCell.driverName.text = route.driver.driverName
         routeCell.driverCar.text = route.driver.driverCarName
-        routeCell.fromLocation.text = route.path.startLocationDescription
-        routeCell.toLocation.text = route.path.endLocationDescription
+        routeCell.fromLocation.text = route.path.fromLocationDescription
+        routeCell.toLocation.text = route.path.destinationLocationDescription
         routeCell.time.text = route.time.description
         
         return routeCell
@@ -119,6 +122,9 @@ class RoutesTableViewController: UITableViewController {
         }
         if let userDetailsVC = segue.destination as? UserDetailsTableViewController {
             userDetailsVC.user = loggedInUser
+        }
+        if let createRouteVC = segue.destination as? CreateRouteViewController {
+            createRouteVC.driver = Driver(driverName: loggedInUser.name, driverCarName: (loggedInUser.cars.first?.name)!)
         }
     }
  

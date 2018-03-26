@@ -9,18 +9,25 @@
 import Foundation
 import MapKit
 
-class Path {
-    let startLocation: CLLocationCoordinate2D
-    let startLocationDescription: String
-    let endLocation: CLLocationCoordinate2D
-    let endLocationDescription: String
-    let route: MKRoute
-
-    init(startLocation: CLLocationCoordinate2D, startLocationDescription: String, endLocation: CLLocationCoordinate2D, endLocationDescription: String, route: MKRoute) {
-        self.startLocation = startLocation
-        self.startLocationDescription = startLocationDescription
-        self.endLocation = endLocation
-        self.endLocationDescription = endLocationDescription
-        self.route = route
-    }
+struct Path {
+//    let startLocation: CLLocationCoordinate2D
+//    let startLocationDescription: String
+//    let endLocation: CLLocationCoordinate2D
+//    let endLocationDescription: String
+//    let route: MKRoute
+//
+//    init(startLocation: CLLocationCoordinate2D, startLocationDescription: String, endLocation: CLLocationCoordinate2D, endLocationDescription: String, route: MKRoute) {
+//        self.startLocation = startLocation
+//        self.startLocationDescription = startLocationDescription
+//        self.endLocation = endLocation
+//        self.endLocationDescription = endLocationDescription
+//        self.route = route
+//    }    
+    var from: CLLocationCoordinate2D?
+    var fromLocationDescription: String?
+    var stop: CLLocationCoordinate2D?
+    var stopLocationDescription: String?
+    var destination: CLLocationCoordinate2D?
+    var destinationLocationDescription: String?
+    
 }

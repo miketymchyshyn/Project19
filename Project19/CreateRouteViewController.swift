@@ -14,10 +14,13 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var whereToView: UIView!
     @IBOutlet weak var whereToTextField: UITextField!
-    
     @IBOutlet weak var timePickerView: UIView!
     
+    /// specific driver that creates a route.
+    var driver: Driver!
+    
     private var path: Path?
+    private var routes = [MKRoute]()
     
     /// MapView Constraint to Bottom
     @IBOutlet weak var MVtoBottom: NSLayoutConstraint!
@@ -33,9 +36,7 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelRouteCreation))
-        
         
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
@@ -51,6 +52,7 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     
         // MARK: - showRouteOnMap
     
+    /*
     ///deprecated
     func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
         
@@ -95,7 +97,6 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
             let route = response.routes[0]
             
             //store current route
-            //TODO: fix namig for start and end location
             
             self?.path = Path(startLocation: sourcePlacemark.coordinate, startLocationDescription: sourceMapItem.name!, endLocation: destinationPlacemark.coordinate, endLocationDescription: destinationMapItem.name! , route: route)
             
@@ -110,12 +111,102 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     func showRouteOnMap(to destinationCoordinate: CLLocationCoordinate2D){
         showRouteOnMap(pickupCoordinate: mapView.userLocation.coordinate, destinationCoordinate: destinationCoordinate)
     }
+     */
     
-    func showRouteOnMap() {
+    func showRouteOnMap(path: Path) {
+        //        TODO: make map focus on created route.
+        self.path = path
+        if path.from == nil {
+            self.path?.from = mapView.userLocation.coordinate
+            self.path?.fromLocationDescription = mapView.userLocation.title
+        }
         
+        let fromPlacemark = MKPlacemark(coordinate: (self.path?.from)!)
+        let fromMapItem = MKMapItem(placemark: fromPlacemark)
+        let fromAnnotaion = MKPointAnnotation()
+        if let location = fromPlacemark.location {
+            fromAnnotaion.coordinate = location.coordinate
+        }
+        let destinationPlacemark = MKPlacemark(coordinate: (self.path?.destination)!)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        let destinationAnnotaiton = MKPointAnnotation()
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotaiton.coordinate = location.coordinate
+        }
+        
+        if path.stop != nil {
+            self.path?.stop = path.stop
+            let stopPlacemark = MKPlacemark(coordinate: (self.path?.stop)! )
+            let stopMapItem = MKMapItem(placemark: stopPlacemark)
+           
+            //draw path though three points.
+            let directionRequest = MKDirectionsRequest()
+            directionRequest.source = fromMapItem
+            directionRequest.destination = stopMapItem
+            directionRequest.transportType = .automobile
+            directionRequest.requestsAlternateRoutes = false
+            var fromToStopRoute = MKRoute()
+            var stopToDestinationRoute = MKRoute()
+            
+            var directions = MKDirections(request: directionRequest)
+            directions.calculate { [unowned self]
+                (response, error) -> Void in
+                
+                guard let response = response else {
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                    return
+                }
+                fromToStopRoute = response.routes[0]
+                self.routes.append(fromToStopRoute)
+                self.mapView.add((response.routes[0].polyline), level: MKOverlayLevel.aboveRoads)
+            }
+            
+            directionRequest.source = stopMapItem
+            directionRequest.destination = destinationMapItem
+            directions = MKDirections(request: directionRequest)
+            
+            directions.calculate { [unowned self]
+                (response, error) -> Void in
+                
+                guard let response = response else {
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                    return
+                }
+                
+                stopToDestinationRoute = response.routes[0]
+                self.routes.append(stopToDestinationRoute)
+                self.mapView.add((response.routes[0].polyline), level: MKOverlayLevel.aboveRoads)
+            }
+            //TODO: figure out how to make multiple(two) routes into one. Or do another way by handling [MKRoute]
+            
+        } else {
+            //TODO: draw path between two points.
+            let directionRequest = MKDirectionsRequest()
+            directionRequest.source = fromMapItem
+            directionRequest.destination = destinationMapItem
+            directionRequest.transportType = .automobile
+            directionRequest.requestsAlternateRoutes = false
+            let directions = MKDirections(request: directionRequest)
+            directions.calculate { [unowned self]
+                (response, error) -> Void in
+                guard let response = response else {
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                    return
+                }
+                self.routes.append(response.routes[0])
+                self.mapView.add((response.routes[0].polyline), level: MKOverlayLevel.aboveRoads)
+                
+            }
+            
+        }
     }
-    
-    
     
     // MARK: - MKMapViewDelegate
     
@@ -141,23 +232,28 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     }
 
     //MARK: - Private funcs
-    private func removeRoute(){
+    private func removeRoute() {
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
         path = nil
     }
     
-    //MARK: - Crate Route
+    //MARK: - Create Route
     @IBAction func createRoute(sender: UIButton) {
         //TODO: find out how to format and send route info.
-        //Package two MKPointAnnotations: start anntoation and end annotation
+        //Package two or three MKPointAnnotations: start anntoation and end annotation, optional stopAnnotaion.
         //Package MKRoute with them.
-        let mockDriver = Driver(driverID: "qwerty", driverName: "John Johnson", driverCarName: "Chevrolet")
+        
+        let mockDriver = Driver(driverName: "John Johnson", driverCarName: "Chevrolet")
         assert(path != nil, "Oops. Path is nil")
+//        assert(route != nil, "Damn. Route is nil")
         //TODO: set up correct date.
-        let mockRoute = Route(driver: mockDriver, path: path!, time: Date(), maxPlaces: 3)
+        
+        let mockRoute = Route(driver: mockDriver, path: path!, time: Date(), maxPlaces: 3, routes: routes)
+        
         RequestManager.shared.addRoute(route: mockRoute)
         navigationController?.popViewController(animated: true)
     }
 }
+
 
