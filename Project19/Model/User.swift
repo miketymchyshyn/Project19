@@ -14,15 +14,15 @@ class User {
     private(set) var userPhoto: UIImage?
     private(set) var cars = [Car]()
     
-    init(name: String){
+    init(name: String) {
         self.name = name
     }
     
-    func addCar(car: Car){
+    func addCar(car: Car) {
         cars.append(car)
     }
     
-    func setPhoto(image: UIImage){
+    func setPhoto(image: UIImage) {
         self.userPhoto = image
     }
 }

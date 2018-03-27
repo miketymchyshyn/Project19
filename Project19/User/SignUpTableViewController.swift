@@ -26,9 +26,12 @@ class SignUpTableViewController: UITableViewController {
     }
 
     
-    /*
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        aboutTextView.layer.borderWidth = 1
+        aboutTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        aboutTextView.layer.cornerRadius = 8
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,7 +39,7 @@ class SignUpTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

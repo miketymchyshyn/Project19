@@ -30,7 +30,7 @@ class RoutesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        //debug mockup
+        //create mockup user here.
         let muser = User(name: "David Mockup")
         muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
         loggedInUser = muser
@@ -72,8 +72,13 @@ class RoutesTableViewController: UITableViewController {
         return routeCell
     }
     
+    //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
+        //        TODO: pick which segue to perform based on whether loggedInUser is the driver for selected route or not.
+        //if yes
+        performSegue(withIdentifier: "SegueToPickup", sender: self)
+        //if not
+//        performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
     }
 
     /*
