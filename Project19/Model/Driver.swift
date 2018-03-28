@@ -13,15 +13,12 @@ import UIKit
 // Is a User
 
 class Driver {
-//    let driverID: String
-    
     let driverName: String
     var driverImage: UIImage?
     let driverCarName: String
     var driverCarImage: UIImage?
     
     init(driverName: String, driverCarName: String) {
-//        self.driverID = driverID
         self.driverName = driverName
         self.driverCarName = driverCarName
     }

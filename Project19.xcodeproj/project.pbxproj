@@ -33,6 +33,8 @@
 		62A0AFEF206020FE00C3BE5E /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEE206020FE00C3BE5E /* Car.swift */; };
 		62A2A1C02062A52800EFF020 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A1BD2062A52800EFF020 /* Alamofire.framework */; };
 		62C85DF6206A8DBE007BA61A /* PickupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */; };
+		62C85DF8206BB451007BA61A /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DF7206BB451007BA61A /* Passenger.swift */; };
+		62C85DFB206BC84E007BA61A /* PassengerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DFA206BC84E007BA61A /* PassengerTableViewCell.swift */; };
 		62FF3EEC206A3CCB0094D0D8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EEB206A3CCB0094D0D8 /* Endpoint.swift */; };
 		62FF3EEE206A3D250094D0D8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EED206A3D250094D0D8 /* UserService.swift */; };
 		62FF3EF5206A496D0094D0D8 /* Bucko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EF4206A496D0094D0D8 /* Bucko.swift */; };
@@ -67,6 +69,8 @@
 		62A0AFEE206020FE00C3BE5E /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		62A2A1BD2062A52800EFF020 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupTableViewController.swift; sourceTree = "<group>"; };
+		62C85DF7206BB451007BA61A /* Passenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
+		62C85DFA206BC84E007BA61A /* PassengerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerTableViewCell.swift; sourceTree = "<group>"; };
 		62FF3EEB206A3CCB0094D0D8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		62FF3EED206A3D250094D0D8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		62FF3EF4206A496D0094D0D8 /* Bucko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucko.swift; sourceTree = "<group>"; };
@@ -109,12 +113,11 @@
 				622441892051A50D0028ED39 /* Info.plist */,
 				622441812051A50D0028ED39 /* Main.storyboard */,
 				6224417D2051A50D0028ED39 /* AppDelegate.swift */,
-				6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */,
 				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
-				622441942056FC370028ED39 /* WhereToViewController.swift */,
 				6224419C205852FC0028ED39 /* RoutesTableViewController.swift */,
 				620ED4E120603FE3002E248E /* AddVehicleViewController.swift */,
 				62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */,
+				62C85DF9206BB629007BA61A /* Create Route */,
 				62A0AFE2205C39DC00C3BE5E /* User */,
 				62A0AFE5205C3BE900C3BE5E /* View */,
 				62244199205850770028ED39 /* Model */,
@@ -152,6 +155,7 @@
 				622441A82059305A0028ED39 /* Route.swift */,
 				62A0AFEC2060206500C3BE5E /* User.swift */,
 				62A0AFEE206020FE00C3BE5E /* Car.swift */,
+				62C85DF7206BB451007BA61A /* Passenger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,8 +177,18 @@
 				6224419E2058532A0028ED39 /* RouteTableViewCell.swift */,
 				62A0AFE820601DED00C3BE5E /* UserTableViewCell.swift */,
 				62A0AFEA20601DFA00C3BE5E /* CarTableViewCell.swift */,
+				62C85DFA206BC84E007BA61A /* PassengerTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		62C85DF9206BB629007BA61A /* Create Route */ = {
+			isa = PBXGroup;
+			children = (
+				6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */,
+				622441942056FC370028ED39 /* WhereToViewController.swift */,
+			);
+			path = "Create Route";
 			sourceTree = "<group>";
 		};
 		62FF3EF1206A3E1B0094D0D8 /* Networking */ = {
@@ -287,6 +301,7 @@
 			files = (
 				62A0AFDF205C2D4800C3BE5E /* LoginViewController.swift in Sources */,
 				622441802051A50D0028ED39 /* CreateRouteViewController.swift in Sources */,
+				62C85DF8206BB451007BA61A /* Passenger.swift in Sources */,
 				62244197205828370028ED39 /* LocationTableViewCell.swift in Sources */,
 				622441A92059305A0028ED39 /* Route.swift in Sources */,
 				62A0AFE920601DED00C3BE5E /* UserTableViewCell.swift in Sources */,
@@ -306,6 +321,7 @@
 				622441A72059303F0028ED39 /* Path.swift in Sources */,
 				62FF3EEE206A3D250094D0D8 /* UserService.swift in Sources */,
 				623113D3206284C0008A7251 /* SignUpTableViewController.swift in Sources */,
+				62C85DFB206BC84E007BA61A /* PassengerTableViewCell.swift in Sources */,
 				6224419D205852FC0028ED39 /* RoutesTableViewController.swift in Sources */,
 				620ED4E220603FE3002E248E /* AddVehicleViewController.swift in Sources */,
 			);
