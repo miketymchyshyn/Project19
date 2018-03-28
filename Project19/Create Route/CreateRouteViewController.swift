@@ -47,6 +47,8 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         whereToView.isHidden = false
         MVtoBottom.constant = 0
         removeRoute()
+        path = nil
+        routes.removeAll()
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
