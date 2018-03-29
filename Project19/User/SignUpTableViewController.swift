@@ -18,41 +18,19 @@ class SignUpTableViewController: UITableViewController {
     @IBOutlet weak var aboutTextView: UITextView!
     
     @IBAction func SignUpButton(_ sender: UIButton) {
-        //TODO: Input validation.
-        //create new user.
-        //save his info
-        //log in
-        //create token for user and save it to userDefaults
-    }
+        //TODO: Input validation. Create new user; form POST requset; Send it to user/signup endpoint; Save token recieved in response.
 
-    
+        performSegue(withIdentifier: "SegueToRoutesFromSignUp", sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAboutTextView()
+    }
+    
+    private func setupAboutTextView(){
         aboutTextView.layer.borderWidth = 1
         aboutTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         aboutTextView.layer.cornerRadius = 8
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    /*
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    */
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

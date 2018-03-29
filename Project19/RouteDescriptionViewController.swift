@@ -26,32 +26,9 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        //TODO: change for handling multiple routes.
-        for route in route.routes {
-        let pointcount = route.polyline.pointCount
-        let cllocationcoordinate2Dpointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: pointcount)
-        let range = NSRange(location: 0, length: pointcount)
-        print( route.polyline.getCoordinates(cllocationcoordinate2Dpointer, range: range))
-        print(cllocationcoordinate2Dpointer)
-        for i in 0..<pointcount {
-            let mapPoint = MKMapPoint(x: cllocationcoordinate2Dpointer[i].latitude, y: cllocationcoordinate2Dpointer[i].longitude)
-            mappoints.append(mapPoint)
-            }
-        }
+        initMappoints()
         drawRouteOnMap()
     }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: - MKMapViewDelegate
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -59,9 +36,6 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         renderer.strokeColor = UIColor(red: 17.0/255.0, green: 147.0/255.0, blue: 255.0/255.0, alpha: 1)
         renderer.lineWidth = 5.0
         return renderer
-    }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     }
     
     // MARK: - Private methods
@@ -121,7 +95,20 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         //mapView.showAnnotations([closestPoint1, closestPoint2, proposedpickupAnnotation], animated: true)
         mapView.showAnnotations([proposedpickupAnnotation], animated: true)
     }
-
+    private func initMappoints() {
+        for route in route.routes {
+            let pointcount = route.polyline.pointCount
+            let cllocationcoordinate2Dpointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: pointcount)
+            let range = NSRange(location: 0, length: pointcount)
+            print( route.polyline.getCoordinates(cllocationcoordinate2Dpointer, range: range))
+            print(cllocationcoordinate2Dpointer)
+            for i in 0..<pointcount {
+                let mapPoint = MKMapPoint(x: cllocationcoordinate2Dpointer[i].latitude, y: cllocationcoordinate2Dpointer[i].longitude)
+                mappoints.append(mapPoint)
+            }
+        }
+    }
+    
     private func drawRouteOnMap() {
         for route in route.routes {
             mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
@@ -130,8 +117,6 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         }
     }
 }
-
-
 
 extension CGPoint {
     func closestPointOnLineSegment(start p1: CGPoint, end p2: CGPoint) -> CGPoint {

@@ -16,7 +16,7 @@ import MapKit
 
 class RequestManager {
     
-    //Routes part. Yet to conver to HTTP mockups
+    //Routes part. Yet to convert to HTTP mockups
     static let shared = RequestManager()
     
     private var routes = [Route]()

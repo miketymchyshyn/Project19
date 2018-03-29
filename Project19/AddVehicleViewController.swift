@@ -26,7 +26,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
    
     @IBAction func save(_ sender: UIBarButtonItem) {
-        //TODO: check if fields are filled correctly. Save car for user
+        //TODO: check if fields are filled correctly.
+
         if checkFields() {
             if let carName = carNameTextField.text, let seatCountText = seatsLabel.text {
                 let seatCount = Int(seatCountText)!
@@ -39,7 +40,11 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
                 presentingViewController?.dismiss(animated: true, completion: nil)
             }
         } else {
-            print("fields not filled.")
+            let alert = UIAlertController(title: "Incomplete car info.", message: "Please set image, name, and seat count.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                print("alert for incomplete info.")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -62,24 +67,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // MARK: - Tap selectors
-    
+    //MARK: - Tap selectors
     @objc func handleTapOnVehicleImage() {
         present(imagePicker, animated: true, completion: nil)
     }
@@ -119,10 +107,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
         seatsLabel.text = seats[row]
     }
     
-    // MARK: - Private Methods
+    // MARK: - Check Fields
     private func checkFields() -> Bool {
-    // TODO: check car info fill fullness
-        if vehiclePhoto == nil || (carNameTextField.text?.isEmpty)! {
+        //TODO: better cheking.
+        if vehiclePhoto == nil || (carNameTextField.text?.isEmpty)! || (seatsLabel.text == "Set")  {
             return false
             } else {
             return true

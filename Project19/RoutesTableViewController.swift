@@ -21,16 +21,15 @@ class RoutesTableViewController: UITableViewController {
         performSegue(withIdentifier: "SegueToUserDetails", sender: sender)
     }
     
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refreshRoutes), for: .valueChanged)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setupDateFormat()
         
-        //create mockup user here.
+        //mockup user. Real user should be loaded from back end using saved token.
         let muser = User(name: "David Mockup")
         muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
         loggedInUser = muser
@@ -38,7 +37,7 @@ class RoutesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addRouteButton.isEnabled = loggedInUser.cars.count > 0 ? true : false
+        addRouteButton.isEnabled = loggedInUser.cars.count > 0
     }
     
     @objc func refreshRoutes() {
@@ -46,16 +45,16 @@ class RoutesTableViewController: UITableViewController {
         tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
-
-    // MARK: - Table view data source
+    
+    // MARK: - UITableViewDataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath)
         guard let routeCell = cell as? RouteTableViewCell else {
@@ -66,33 +65,48 @@ class RoutesTableViewController: UITableViewController {
         routeCell.driverCar.text = route.driver.driverCarName
         routeCell.fromLocation.text = route.path.fromLocationDescription
         routeCell.toLocation.text = route.path.destinationLocationDescription
-        routeCell.time.text = route.time.description
+        routeCell.time.text = dateFormatter.string(from: route.time)
+        
+        //for demo purpose first route you create is highlighted yellow as if it is created by you.
+        if indexPath.row == 0 {
+            routeCell.layer.backgroundColor = UIColor.yellow.cgColor
+        }
         
         return routeCell
     }
     
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        TODO: pick which segue to perform based on whether loggedInUser is the driver for selected route or not.
-        // if yes
-//        performSegue(withIdentifier: "SegueToPickup", sender: self)
-        // if not
-         performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
+        // TODO: pick which segue to perform based on whether loggedInUser is the driver for selected route or not.
+        //for demo. first route is yours other routes are form other drivers.
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "SegueToPickup", sender: self)
+        } else {
+            performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
+        }
     }
-
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //TODO: segue to pickup
+        
+        //segue to route description.
         if let descriptionVC = segue.destination as? RouteDescriptionViewController, let route = sender as? Route {
             descriptionVC.route = route
         }
+        //segue to user details.
         if let userDetailsVC = segue.destination as? UserDetailsTableViewController {
             userDetailsVC.user = loggedInUser
         }
+        //segue to create route.
         if let createRouteVC = segue.destination as? CreateRouteViewController {
+            //create a concrete driver form user info.
             createRouteVC.driver = Driver(driverName: loggedInUser.name, driverCarName: (loggedInUser.cars.first?.name)!)
         }
     }
- 
-
+    
+    private func setupDateFormat(){
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+    }
 }
