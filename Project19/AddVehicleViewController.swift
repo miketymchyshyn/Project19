@@ -11,7 +11,6 @@ import UIKit
 class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var user: User!
-    
     let seats = ["1", "2", "3", "4", "5", "6", "7"]
     var vehiclePhoto: UIImage?
     let imagePicker = UIImagePickerController()
@@ -26,8 +25,6 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
    
     @IBAction func save(_ sender: UIBarButtonItem) {
-        //TODO: check if fields are filled correctly.
-
         if checkFields() {
             if let carName = carNameTextField.text, let seatCountText = seatsLabel.text {
                 let seatCount = Int(seatCountText)!

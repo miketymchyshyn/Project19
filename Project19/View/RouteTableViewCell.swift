@@ -10,8 +10,7 @@ import UIKit
 
 class RouteTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var driverImage: UIImageView!
-    
+    @IBOutlet weak var driverImage: UIImageView!    
     @IBOutlet weak var driverName: UILabel!
     @IBOutlet weak var driverCar: UILabel!
     

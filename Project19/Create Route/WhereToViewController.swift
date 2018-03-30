@@ -15,6 +15,7 @@ let defaultFieldSpacing: CGFloat = 8
 let defaultFieldHeight: CGFloat = 30
 
 class WhereToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    var currentMapRegion: MKCoordinateRegion!
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var whereToField: UITextField!
@@ -26,7 +27,6 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var addStopButtonOutlet: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
-    var currentMapRegion: MKCoordinateRegion!
     
     @IBAction func addStopButton(_ sender: UIButton) {
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing

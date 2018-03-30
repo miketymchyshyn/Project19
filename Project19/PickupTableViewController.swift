@@ -71,12 +71,6 @@ class PickupTableViewController: UIViewController, MKMapViewDelegate, UITableVie
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-    }
-    
     func placePickUpMarker(for pickupAnnotation: PickupAnnotation){
         mapView.addAnnotation(pickupAnnotation)
     }
