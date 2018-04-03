@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 
 // Actual driver for the route.
-// Is a User
-
 class Driver {
     let driverName: String
     var driverImage: UIImage?
     let driverCarName: String
     var driverCarImage: UIImage?
+    var driverCarMaxSeatCount: Int
     
-    init(driverName: String, driverCarName: String) {
+    init(driverName: String, driverCarName: String, seatCount: Int) {
         self.driverName = driverName
         self.driverCarName = driverCarName
+        self.driverCarMaxSeatCount = seatCount
     }
 }

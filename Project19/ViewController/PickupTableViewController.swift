@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PickupTableViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate{
+class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!

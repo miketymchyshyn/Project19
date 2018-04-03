@@ -101,7 +101,7 @@ class RoutesTableViewController: UITableViewController {
         //segue to create route.
         if let createRouteVC = segue.destination as? CreateRouteViewController {
             //create a concrete driver form user info.
-            createRouteVC.driver = Driver(driverName: loggedInUser.name, driverCarName: (loggedInUser.cars.first?.name)!)
+            createRouteVC.driver = Driver(driverName: loggedInUser.name, driverCarName: (loggedInUser.cars.first?.name)!, seatCount: (loggedInUser.cars.first?.passengerSeatsCount)!)
         }
     }
     

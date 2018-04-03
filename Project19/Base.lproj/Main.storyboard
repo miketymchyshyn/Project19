@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dkb-JO-ccI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7Y-Ep-hca">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -135,10 +135,10 @@
             </objects>
             <point key="canvasLocation" x="-788" y="270.31484257871068"/>
         </scene>
-        <!--Pickup Table View Controller-->
+        <!--Pickup View Controller-->
         <scene sceneID="qIe-ZX-I3m">
             <objects>
-                <viewController id="cfX-D9-cKf" customClass="PickupTableViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cfX-D9-cKf" customClass="PickupViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tHB-Lh-lWI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKf-Rm-aC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1454" y="1200"/>
+            <point key="canvasLocation" x="-1223" y="1200"/>
         </scene>
         <!--Route Description View Controller-->
         <scene sceneID="N98-pK-uiH">
@@ -395,13 +395,13 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passenger Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCy-tG-VUS">
-                                                                            <rect key="frame" x="108" y="11" width="253" height="21"/>
+                                                                            <rect key="frame" x="101" y="11" width="267" height="21"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7UZ-NM-ftJ">
-                                                                            <rect key="frame" x="14" y="0.0" width="86" height="85"/>
+                                                                            <rect key="frame" x="7" y="0.0" width="86" height="87.5"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="86" id="6vF-xb-Bma"/>
                                                                             </constraints>
@@ -458,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxy-g3-mHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-286" y="1200"/>
+            <point key="canvasLocation" x="-342" y="1200"/>
         </scene>
         <!--Create Route View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -478,7 +478,7 @@
                                 <rect key="frame" x="67" y="104" width="240" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where to ? " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mcZ-qQ-B6Y">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where to ? " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mcZ-qQ-B6Y">
                                         <rect key="frame" x="8" y="19" width="224" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
@@ -488,38 +488,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oom-HR-Jtz">
-                                <rect key="frame" x="0.0" y="506" width="375" height="161"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JF-A5-Q1c">
+                                <rect key="frame" x="127" y="587" width="120" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dMU-4O-jrD">
-                                        <rect key="frame" x="0.0" y="0.0" width="246" height="162"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="542652457.15645301">
-                                            <!--2018-03-13 16:47:37 +0000-->
-                                        </date>
-                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-949410000">
-                                            <!--1970-12-01 11:00:00 +0000-->
-                                        </date>
-                                        <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
-                                            <!--2037-12-31 11:00:00 +0000-->
-                                        </date>
-                                        <locale key="locale" localeIdentifier="uk"/>
-                                    </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thr-V1-8hh">
-                                        <rect key="frame" x="297" y="46" width="68" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Set time">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="createRouteWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W0R-bR-q6n"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createRouteWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBU-72-1kM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -531,12 +511,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="MVtoBottom" destination="hzF-ru-v5S" id="bAQ-VA-dQw"/>
+                        <outlet property="MVToBottom" destination="hzF-ru-v5S" id="UHC-bf-te3"/>
+                        <outlet property="confirmButton" destination="4JF-A5-Q1c" id="lBg-Kg-6Gs"/>
                         <outlet property="mapView" destination="8I7-U2-eUi" id="aQo-R1-zKb"/>
-                        <outlet property="timePicker" destination="dMU-4O-jrD" id="AhJ-Of-qId"/>
-                        <outlet property="timePickerView" destination="oom-HR-Jtz" id="q6B-pl-EPO"/>
-                        <outlet property="whereToTextField" destination="mcZ-qQ-B6Y" id="alA-EE-a1z"/>
                         <outlet property="whereToView" destination="GbW-Az-tac" id="LSt-vb-aX6"/>
+                        <segue destination="r4s-T9-u3B" kind="presentation" identifier="SegueToWhereTo" id="1QQ-hD-cuW"/>
+                        <segue destination="5ij-RF-V2P" kind="presentation" identifier="ToChooseTime" id="nD9-Gw-InG"/>
+                        <segue destination="Xyc-S9-JH1" kind="presentation" identifier="ToChooseSeats" id="xLE-YC-QOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -546,7 +527,7 @@
         <!--Where To View Controller-->
         <scene sceneID="XXE-yM-EQg">
             <objects>
-                <viewController storyboardIdentifier="WhereToViewController" id="r4s-T9-u3B" customClass="WhereToViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WhereToViewController" modalPresentationStyle="overCurrentContext" id="r4s-T9-u3B" customClass="WhereToViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sqv-f2-aWg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -705,18 +686,17 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEv-de-1pn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4LT-Rn-wSb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="269"/>
+            <point key="canvasLocation" x="1326" y="-215"/>
         </scene>
-        <!--View Controller-->
+        <!--Choose Time View Controller-->
         <scene sceneID="hY3-eP-HR0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Td-HC-gby" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="5ij-RF-V2P" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="my9-iL-7sS">
+                <viewController storyboardIdentifier="ChooseTimeViewController" modalPresentationStyle="overCurrentContext" id="5ij-RF-V2P" customClass="ChooseTimeViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="my9-iL-7sS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ika-H0-s1n">
+                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ika-H0-s1n">
                                 <rect key="frame" x="0.0" y="177" width="375" height="336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -732,7 +712,7 @@
                                         <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
                                             <!--2037-12-31 11:00:00 +0000-->
                                         </date>
-                                        <locale key="locale" localeIdentifier="uk"/>
+                                        <locale key="locale" localeIdentifier="uk_UA"/>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUO-1D-4Xi">
                                         <rect key="frame" x="117" y="268" width="140" height="60"/>
@@ -742,7 +722,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="createRouteWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="beO-DY-JaO"/>
+                                            <action selector="setTime:" destination="5ij-RF-V2P" eventType="touchUpInside" id="hsF-Gu-kh1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dow-KD-eeX">
@@ -753,25 +733,30 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1in-t1-pLd"/>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="bTr-HU-Bdv" id="Xgo-ZP-e3d"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Td-HC-gby" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2243" y="270"/>
+            <point key="canvasLocation" x="2135" y="270"/>
         </scene>
-        <!--View Controller-->
+        <!--Pick Seats View Controller-->
         <scene sceneID="O6c-an-dzs">
             <objects>
-                <viewController id="Xyc-S9-JH1" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Khg-Rb-p1X">
+                <viewController modalPresentationStyle="overCurrentContext" id="Xyc-S9-JH1" customClass="PickSeatsViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Khg-Rb-p1X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNy-Qg-LZ5">
+                            <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNy-Qg-LZ5">
                                 <rect key="frame" x="0.0" y="170" width="375" height="342"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -782,10 +767,17 @@
                                         <state key="normal" title="OK">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="setSeats:" destination="Xyc-S9-JH1" eventType="touchUpInside" id="I4c-xZ-3bz"/>
+                                        </connections>
                                     </button>
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFa-q8-Ucs">
                                         <rect key="frame" x="0.0" y="104" width="375" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Xyc-S9-JH1" id="BNS-L7-RTO"/>
+                                            <outlet property="delegate" destination="Xyc-S9-JH1" id="uU3-6M-dKf"/>
+                                        </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How many passengers can hop in ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xup-fT-jK2">
                                         <rect key="frame" x="0.0" y="41" width="375" height="55"/>
@@ -795,16 +787,18 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cpI-CZ-fBS"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SV8-FN-BIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2908" y="270"/>
+            <point key="canvasLocation" x="1326" y="791"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="1Na-uH-q6p">
@@ -1014,7 +1008,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tvm-A8-HUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="-546"/>
+            <point key="canvasLocation" x="1070" y="-1009"/>
         </scene>
         <!--Sign Up Table View Controller-->
         <scene sceneID="72f-Vz-QrO">
@@ -1188,7 +1182,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MM-08-hip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="269.41529235382313"/>
+            <point key="canvasLocation" x="-1953" y="270"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OlF-QJ-gVQ">
@@ -1213,6 +1207,6 @@
         <image name="addPhoto" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N73-0f-6ym"/>
+        <segue reference="Os7-Wr-NHe"/>
     </inferredMetricsTieBreakers>
 </document>

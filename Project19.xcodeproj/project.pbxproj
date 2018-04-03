@@ -24,23 +24,25 @@
 		622441A92059305A0028ED39 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622441A82059305A0028ED39 /* Route.swift */; };
 		622441AB205957870028ED39 /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622441AA205957870028ED39 /* RouteDescriptionViewController.swift */; };
 		623113D3206284C0008A7251 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623113D2206284C0008A7251 /* SignUpTableViewController.swift */; };
-		62969286206A4E7900614E94 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62969285206A4E7900614E94 /* SwiftyJSON.framework */; };
+		62441BBA2072907300D8C0A4 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62441BB92072907300D8C0A4 /* ChooseTimeViewController.swift */; };
 		62A0AFDF205C2D4800C3BE5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFDE205C2D4800C3BE5E /* LoginViewController.swift */; };
 		62A0AFE720601BFC00C3BE5E /* UserDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFE620601BFC00C3BE5E /* UserDetailsTableViewController.swift */; };
 		62A0AFE920601DED00C3BE5E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFE820601DED00C3BE5E /* UserTableViewCell.swift */; };
 		62A0AFEB20601DFA00C3BE5E /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEA20601DFA00C3BE5E /* CarTableViewCell.swift */; };
 		62A0AFED2060206500C3BE5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEC2060206500C3BE5E /* User.swift */; };
 		62A0AFEF206020FE00C3BE5E /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A0AFEE206020FE00C3BE5E /* Car.swift */; };
-		62A2A1C02062A52800EFF020 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A1BD2062A52800EFF020 /* Alamofire.framework */; };
 		62C85DF6206A8DBE007BA61A /* PickupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */; };
 		62C85DF8206BB451007BA61A /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DF7206BB451007BA61A /* Passenger.swift */; };
 		62C85DFB206BC84E007BA61A /* PassengerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C85DFA206BC84E007BA61A /* PassengerTableViewCell.swift */; };
+		62F106342072872900B8C04A /* PickSeatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F106332072872900B8C04A /* PickSeatsViewController.swift */; };
 		62FF3EEC206A3CCB0094D0D8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EEB206A3CCB0094D0D8 /* Endpoint.swift */; };
 		62FF3EEE206A3D250094D0D8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EED206A3D250094D0D8 /* UserService.swift */; };
 		62FF3EF5206A496D0094D0D8 /* Bucko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF3EF4206A496D0094D0D8 /* Bucko.swift */; };
+		DC3E1AC3454BFE20DC3234E5 /* Pods_Project19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96144F751F00055F0FBA6B89 /* Pods_Project19.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B0E3480B42C859E6F37716C /* Pods-Project19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project19.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project19/Pods-Project19.release.xcconfig"; sourceTree = "<group>"; };
 		620ED4E120603FE3002E248E /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
 		6224417A2051A50D0028ED39 /* Project19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6224417D2051A50D0028ED39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,20 +62,22 @@
 		622441A82059305A0028ED39 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		622441AA205957870028ED39 /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		623113D2206284C0008A7251 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
-		62969285206A4E7900614E94 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		62441BB92072907300D8C0A4 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
 		62A0AFDE205C2D4800C3BE5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		62A0AFE620601BFC00C3BE5E /* UserDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewController.swift; sourceTree = "<group>"; };
 		62A0AFE820601DED00C3BE5E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		62A0AFEA20601DFA00C3BE5E /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		62A0AFEC2060206500C3BE5E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		62A0AFEE206020FE00C3BE5E /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
-		62A2A1BD2062A52800EFF020 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupTableViewController.swift; sourceTree = "<group>"; };
 		62C85DF7206BB451007BA61A /* Passenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
 		62C85DFA206BC84E007BA61A /* PassengerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerTableViewCell.swift; sourceTree = "<group>"; };
+		62F106332072872900B8C04A /* PickSeatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickSeatsViewController.swift; sourceTree = "<group>"; };
 		62FF3EEB206A3CCB0094D0D8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		62FF3EED206A3D250094D0D8 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		62FF3EF4206A496D0094D0D8 /* Bucko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucko.swift; sourceTree = "<group>"; };
+		96144F751F00055F0FBA6B89 /* Pods_Project19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB064303E7BE1F1F93AE1C64 /* Pods-Project19.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project19.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project19/Pods-Project19.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,21 +85,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62969286206A4E7900614E94 /* SwiftyJSON.framework in Frameworks */,
-				62A2A1C02062A52800EFF020 /* Alamofire.framework in Frameworks */,
 				622441912051A75D0028ED39 /* MapKit.framework in Frameworks */,
+				DC3E1AC3454BFE20DC3234E5 /* Pods_Project19.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A1575AC5BF7ED0C3089373 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB064303E7BE1F1F93AE1C64 /* Pods-Project19.debug.xcconfig */,
+				3B0E3480B42C859E6F37716C /* Pods-Project19.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		622441712051A50D0028ED39 = {
 			isa = PBXGroup;
 			children = (
 				6224417C2051A50D0028ED39 /* Project19 */,
 				6224417B2051A50D0028ED39 /* Products */,
 				6224418F2051A75D0028ED39 /* Frameworks */,
+				24A1575AC5BF7ED0C3089373 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,16 +126,11 @@
 				622441892051A50D0028ED39 /* Info.plist */,
 				622441812051A50D0028ED39 /* Main.storyboard */,
 				6224417D2051A50D0028ED39 /* AppDelegate.swift */,
-				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
-				6224419C205852FC0028ED39 /* RoutesTableViewController.swift */,
-				620ED4E120603FE3002E248E /* AddVehicleViewController.swift */,
-				62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */,
-				62C85DF9206BB629007BA61A /* Create Route */,
-				62A0AFE2205C39DC00C3BE5E /* User */,
+				62F10632207286DE00B8C04A /* ViewController */,
 				62A0AFE5205C3BE900C3BE5E /* View */,
 				62244199205850770028ED39 /* Model */,
-				62244198205850670028ED39 /* Additional */,
 				62FF3EF1206A3E1B0094D0D8 /* Networking */,
+				62244198205850670028ED39 /* Additional */,
 			);
 			path = Project19;
 			sourceTree = "<group>";
@@ -130,9 +138,8 @@
 		6224418F2051A75D0028ED39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				62969285206A4E7900614E94 /* SwiftyJSON.framework */,
-				62A2A1BD2062A52800EFF020 /* Alamofire.framework */,
 				622441902051A75D0028ED39 /* MapKit.framework */,
+				96144F751F00055F0FBA6B89 /* Pods_Project19.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,8 +194,23 @@
 			children = (
 				6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */,
 				622441942056FC370028ED39 /* WhereToViewController.swift */,
+				62F106332072872900B8C04A /* PickSeatsViewController.swift */,
+				62441BB92072907300D8C0A4 /* ChooseTimeViewController.swift */,
 			);
 			path = "Create Route";
+			sourceTree = "<group>";
+		};
+		62F10632207286DE00B8C04A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
+				6224419C205852FC0028ED39 /* RoutesTableViewController.swift */,
+				620ED4E120603FE3002E248E /* AddVehicleViewController.swift */,
+				62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */,
+				62C85DF9206BB629007BA61A /* Create Route */,
+				62A0AFE2205C39DC00C3BE5E /* User */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		62FF3EF1206A3E1B0094D0D8 /* Networking */ = {
@@ -208,10 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6224418C2051A50D0028ED39 /* Build configuration list for PBXNativeTarget "Project19" */;
 			buildPhases = (
+				F39874B1B0B251967992D19E /* [CP] Check Pods Manifest.lock */,
 				622441762051A50D0028ED39 /* Sources */,
 				622441772051A50D0028ED39 /* Frameworks */,
 				622441782051A50D0028ED39 /* Resources */,
-				62A2A1BA2062A1A400EFF020 /* ShellScript */,
+				65BB7A248AAC8588252E4995 /* [CP] Embed Pods Frameworks */,
+				E1C4DB5E267B3280758CBF60 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,7 +253,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Mykhailo Tymchyshyn";
 				TargetAttributes = {
 					622441792051A50D0028ED39 = {
@@ -275,22 +299,58 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		62A2A1BA2062A1A400EFF020 /* ShellScript */ = {
+		65BB7A248AAC8588252E4995 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Project19/Pods-Project19-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/SwiftyJSON.framework",
-				"$(DERIVED_FILE_DIR)/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project19/Pods-Project19-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1C4DB5E267B3280758CBF60 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project19/Pods-Project19-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F39874B1B0B251967992D19E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Project19-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -313,11 +373,13 @@
 				622441A320592A320028ED39 /* Driver.swift in Sources */,
 				62FF3EF5206A496D0094D0D8 /* Bucko.swift in Sources */,
 				62A0AFEB20601DFA00C3BE5E /* CarTableViewCell.swift in Sources */,
+				62F106342072872900B8C04A /* PickSeatsViewController.swift in Sources */,
 				622441AB205957870028ED39 /* RouteDescriptionViewController.swift in Sources */,
 				6224419F2058532A0028ED39 /* RouteTableViewCell.swift in Sources */,
 				62A0AFEF206020FE00C3BE5E /* Car.swift in Sources */,
 				62FF3EEC206A3CCB0094D0D8 /* Endpoint.swift in Sources */,
 				622441952056FC370028ED39 /* WhereToViewController.swift in Sources */,
+				62441BBA2072907300D8C0A4 /* ChooseTimeViewController.swift in Sources */,
 				622441A72059303F0028ED39 /* Path.swift in Sources */,
 				62FF3EEE206A3D250094D0D8 /* UserService.swift in Sources */,
 				623113D3206284C0008A7251 /* SignUpTableViewController.swift in Sources */,
@@ -363,6 +425,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -370,6 +433,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -420,6 +484,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -427,6 +492,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -458,6 +524,7 @@
 		};
 		6224418D2051A50D0028ED39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB064303E7BE1F1F93AE1C64 /* Pods-Project19.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -477,6 +544,7 @@
 		};
 		6224418E2051A50D0028ED39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B0E3480B42C859E6F37716C /* Pods-Project19.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

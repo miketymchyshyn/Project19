@@ -9,13 +9,12 @@
 import UIKit
 import MapKit
 
-class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
+class CreateRouteViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var whereToView: UIView!
-    @IBOutlet weak var whereToTextField: UITextField!
-    @IBOutlet weak var timePickerView: UIView!
-    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var MVToBottom: NSLayoutConstraint!
     
     /// specific driver that creates a route.
     var driver: Driver!
@@ -23,15 +22,16 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
     private var path: Path?
     private var routes = [MKRoute]()
     
-    /// MapView Constraint to Bottom
-    @IBOutlet weak var MVtoBottom: NSLayoutConstraint!
+    //route configuration properties.
+    var routeTime: Date!
+    var maxPassengerCount: Int!
     
+
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        whereToTextField.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         mapView.showsUserLocation = true
@@ -40,13 +40,13 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelRouteCreation))
         
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(whereToTapped))
+        whereToView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     
     @objc func cancelRouteCreation() {
-        timePickerView.isHidden = true
-        whereToView.isHidden = false
-        MVtoBottom.constant = 0
         removeRoute()
         path = nil
         routes.removeAll()
@@ -158,35 +158,58 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate, UITextFiel
         return renderer
     }
     
-    //MARK: - UITextFieldDelegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let whereToViewController = storyboard.instantiateViewController(withIdentifier: "WhereToViewController") as? WhereToViewController else {
-            fatalError("Failed to instantiate ViewController with identifier WhereToViewController. Check storyboard id.")
-        }
-        whereToViewController.currentMapRegion = mapView.region
-        present(whereToViewController, animated: true, completion: nil)
+    @objc
+    func whereToTapped(sender: UITapGestureRecognizer){
+        performSegue(withIdentifier: "SegueToWhereTo", sender: self)
     }
 
     private func removeRoute() {
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
+        confirmButton.isHidden = true
         path = nil
     }
     
     //MARK: - Create Route
     @IBAction func createRoute(sender: UIButton) {
-        assert(path != nil, "Oops. Path is nil")
+        assert(path != nil, "Oops. Path is nil.")
+        assert(driver != nil, "Driver is nil.")
         
-        let departureDate = timePicker.date
-        
-        //Create route
-        let route = Route(driver: driver!, path: path!, time: departureDate, maxPlaces: 3, routes: routes)
+        let route = Route(driver: driver!, path: path!, time: routeTime, maxPlaces: maxPassengerCount, routes: routes)
         
         //Send POST reques to _/routes.
         RequestManager.shared.addRoute(route: route)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    //MARK: - Picker View Controller presentation
+    func presentPickSeatsViewController() {
+        performSegue(withIdentifier: "ToChooseSeats", sender: self)
+    }
+    
+    func presentChooseTimeViewController() {
+        performSegue(withIdentifier: "ToChooseTime", sender: self)
+    }
+    
+    //MARK: - Set route time and passenger count.
+    func setRouteTime(date: Date){
+        self.routeTime = date
+    }
+    
+    func setMaxPassengerCount(to count: Int){
+        self.maxPassengerCount = count
+    }
+    
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let whereToViewController = segue.destination as? WhereToViewController {
+            whereToViewController.currentMapRegion = mapView.region
+        }
+        if let pickSeatsViewController = segue.destination as? PickSeatsViewController {
+            pickSeatsViewController.maxPassengerSeatCount = driver.driverCarMaxSeatCount
+        }
     }
 }
 

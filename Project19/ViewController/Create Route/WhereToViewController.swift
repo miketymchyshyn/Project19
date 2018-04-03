@@ -101,25 +101,23 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if whereToField.isFirstResponder {
+            //TODO: uncommert this line when debuggin full scenario of route creation.
             if let presentingNavVC = presentingViewController as? UINavigationController {
                 if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
+                    //            if let presentingVC = presentingViewController as? CreateRouteViewController {
                     
                     //create and show route
                     path.destination = requsetRelatedMapItems[indexPath.row].placemark.coordinate
                     path.destinationLocationDescription = requsetRelatedMapItems[indexPath.row].name
                     
                     presentingVC.showRouteOnMap(path: path)
-                    
-                    //hide some views, show some other views
                     presentingVC.whereToView.isHidden = true
-                    presentingVC.timePickerView.isHidden = false
+                    //enable cancel button
                     presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
                     
-                    //modifi constraints
-                    presentingVC.MVtoBottom.constant = -161
-                    
                     //dismiss route picking controller
-                    presentingVC.dismiss(animated: true, completion: nil)
+                    presentingVC.dismiss(animated: false, completion: nil)
+                    presentingVC.presentChooseTimeViewController()
                 }
             }
         } else if fromWhereField.isFirstResponder {
