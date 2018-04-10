@@ -7,14 +7,16 @@
 //
 
 import UIKit
-import SwiftyJSON
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        TODO: load user from saved token
+        GMSPlacesClient.provideAPIKey("AIzaSyA8t0XSWcpuF5C3oNCWKD1-jZU8Fk5Ys-o")
+        
+        //        TODO: load user from saved token
 //        let getUserRequest = UserService.getUser(id: 42)
 //        let request = Bucko.shared.request(endpoint: getUserRequest)
 //        { response in

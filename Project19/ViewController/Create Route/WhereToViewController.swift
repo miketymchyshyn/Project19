@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import GooglePlaces
 
 let locationCellIdentifier = "LocationCell"
 
@@ -15,6 +16,7 @@ let defaultFieldSpacing: CGFloat = 8
 let defaultFieldHeight: CGFloat = 30
 
 class WhereToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    
     var currentMapRegion: MKCoordinateRegion!
     
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
@@ -30,25 +32,11 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func addStopButton(_ sender: UIButton) {
-        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing
-        
-        addStopStackView.isHidden = false
-        addStopButtonOutlet.isHidden = true
-        topViewHeightConstraint.constant = topViewHeightConstraint.constant + (defaultFieldSpacing + defaultFieldHeight)
-        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
-        addStopField.becomeFirstResponder()
-    }
-    
-    @IBAction func deleteStopButton(_ sender: UIButton) {
-        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
-        addStopStackView.isHidden = true
-        addStopButtonOutlet.isHidden = false
-        path.stop = nil
-        path.stopLocationDescription = nil
-        topViewHeightConstraint.constant = topViewHeightConstraint.constant - (defaultFieldSpacing + defaultFieldHeight)
-        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
-    }
+    ///Google Maps Autocomplete fetcher
+    var fetcher: GMSAutocompleteFetcher?
+    var predictions: [GMSAutocompletePrediction]?
+    var placesClient = GMSPlacesClient()
+
 
     //map items that are displayed while you type in locaion name.
     private var requsetRelatedMapItems = [MKMapItem]()
@@ -73,6 +61,45 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.frame
         self.view.insertSubview(blurEffectView, at: 0)
+        
+        //Set bounds for autocmplete fetcher to Lviv region.
+        //upper left. 49.922645, 23.911019
+        //lower left. 49.787738, 23.902690
+        //upper right 49.878223, 24.135557
+        //lower right. 49.756543, 24.179547
+        let neBoundsCorner = CLLocationCoordinate2D(latitude: 49.878223, longitude: 24.135557)
+        let swBoundsCorner = CLLocationCoordinate2D(latitude: 49.787738, longitude: 23.902690)
+        let bounds = GMSCoordinateBounds(coordinate: neBoundsCorner, coordinate: swBoundsCorner)
+        
+        //Set up the automplete filter.
+        let filter = GMSAutocompleteFilter()
+        filter.type = GMSPlacesAutocompleteTypeFilter.noFilter
+        
+        // Create the fetcher.
+        fetcher = GMSAutocompleteFetcher(bounds: bounds, filter: filter)
+        fetcher?.delegate = self
+        
+    }
+    
+    // MARK: - IBAction.
+    @IBAction func addStopButton(_ sender: UIButton) {
+        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing
+        
+        addStopStackView.isHidden = false
+        addStopButtonOutlet.isHidden = true
+        topViewHeightConstraint.constant = topViewHeightConstraint.constant + (defaultFieldSpacing + defaultFieldHeight)
+        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
+        addStopField.becomeFirstResponder()
+    }
+    
+    @IBAction func deleteStopButton(_ sender: UIButton) {
+        spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
+        addStopStackView.isHidden = true
+        addStopButtonOutlet.isHidden = false
+        path.stop = nil
+        path.stopLocationDescription = nil
+        topViewHeightConstraint.constant = topViewHeightConstraint.constant - (defaultFieldSpacing + defaultFieldHeight)
+        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
     }
     
     // MARK: - UITableViewDataSource
@@ -81,7 +108,11 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return requsetRelatedMapItems.count
+//        return requsetRelatedMapItems.count
+        if let count = predictions?.count {
+            return count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,8 +120,12 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let locationCell = cell as? LocationTableViewCell else {
             fatalError("cell downcast failed.")
         }
-        locationCell.locationDescription.text = requsetRelatedMapItems[indexPath.row].name
-        locationCell.locationAddress.text = requsetRelatedMapItems[indexPath.row].placemark.title
+//        locationCell.locationDescription.text = requsetRelatedMapItems[indexPath.row].name
+//        locationCell.locationAddress.text = requsetRelatedMapItems[indexPath.row].placemark.title
+        if let prediction = predictions?[indexPath.row] {
+            locationCell.locationDescription.text = prediction.attributedPrimaryText.string
+            locationCell.locationAddress.text = prediction.attributedSecondaryText?.string
+        }
         return locationCell
     }
     
@@ -115,38 +150,74 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if whereToField.isFirstResponder {
-            //TODO: uncommert this line when debuggin full scenario of route creation.
-            if let presentingNavVC = presentingViewController as? UINavigationController {
-                if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
-                    //            if let presentingVC = presentingViewController as? CreateRouteViewController {
-                    
-                    //create and show route
-                    path.destination = requsetRelatedMapItems[indexPath.row].placemark.coordinate
-                    path.destinationLocationDescription = requsetRelatedMapItems[indexPath.row].name
-                    
-                    presentingVC.showRouteOnMap(path: path)
-                    presentingVC.whereToView.isHidden = true
-                    //enable cancel button
-                    presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
-                    
-                    //dismiss route picking controller
-                    presentingVC.dismiss(animated: false, completion: nil)
-                    presentingVC.presentChooseTimeViewController()
+        if let placeID = predictions?[indexPath.row].placeID {
+            if whereToField.isFirstResponder {
+                if let presentingNavVC = presentingViewController as? UINavigationController {
+                    if let presentingVC = presentingNavVC.viewControllers.last as? CreateRouteViewController {
+                        //create and show route
+                        placesClient.lookUpPlaceID(placeID, callback: {[weak self] (place, error) -> Void in
+                            if let error = error {
+                                print("lookup place id query error: \(error.localizedDescription)")
+                                return
+                            }
+                            
+                            guard let place = place else {
+                                print("No place details for \(placeID)")
+                                return
+                            }
+                            self?.path.destination = place.coordinate
+                            self?.path.destinationLocationDescription = place.name
+                            
+                            presentingVC.showRouteOnMap(path: (self?.path)!)
+                            presentingVC.whereToView.isHidden = true
+                            //enable cancel button
+                            presentingVC.navigationItem.rightBarButtonItem?.isEnabled = true
+                            
+                            //dismiss route picking controller
+                            presentingVC.dismiss(animated: false, completion: nil)
+                            presentingVC.presentChooseTimeViewController()
+                            
+                        })
+                    }
                 }
+            } else if fromWhereField.isFirstResponder {
+                //            path.from = requsetRelatedMapItems[indexPath.row].placemark.coordinate
+                //            path.fromLocationDescription = requsetRelatedMapItems[indexPath.row].name
+                //            fromWhereField.text = requsetRelatedMapItems[indexPath.row].name
+                placesClient.lookUpPlaceID(placeID, callback: {[weak self] (place, error) -> Void in
+                    if let error = error {
+                        print("lookup place id query error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let place = place else {
+                        print("No place details for \(placeID)")
+                        return
+                    }
+                    self?.path.from = place.coordinate
+                    self?.path.fromLocationDescription = place.name
+                })
+            } else if addStopField.isFirstResponder {
+                //            path.stop = requsetRelatedMapItems[indexPath.row].placemark.coordinate
+                //            path.stopLocationDescription = requsetRelatedMapItems[indexPath.row].name
+                //            addStopField.text = requsetRelatedMapItems[indexPath.row].name
+                placesClient.lookUpPlaceID(placeID, callback: {[weak self] (place, error) -> Void in
+                    if let error = error {
+                        print("lookup place id query error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let place = place else {
+                        print("No place details for \(placeID)")
+                        return
+                    }
+                    self?.path.stop = place.coordinate
+                    self?.path.stopLocationDescription = place.name
+                })
             }
-        } else if fromWhereField.isFirstResponder {
-            path.from = requsetRelatedMapItems[indexPath.row].placemark.coordinate
-            path.fromLocationDescription = requsetRelatedMapItems[indexPath.row].name
-            fromWhereField.text = requsetRelatedMapItems[indexPath.row].name
-            
-        } else if addStopField.isFirstResponder {
-            path.stop = requsetRelatedMapItems[indexPath.row].placemark.coordinate
-            path.stopLocationDescription = requsetRelatedMapItems[indexPath.row].name
-            addStopField.text = requsetRelatedMapItems[indexPath.row].name
         }
     }
-    
+
     // MARK: HandleSwipe
     @objc
     private func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer){
@@ -155,5 +226,34 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
             presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
+    
+    // MARK: - UITextFieldDelegate
+    @IBAction func whereToTextFieldChanged(_ sender: UITextField) {
+        fetcher?.sourceTextHasChanged(sender.text)
+    }
+    
+    
+    func placeLookUp() {
+        
+    }
+    
 
+}
+
+extension WhereToViewController: GMSAutocompleteFetcherDelegate {
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+//        let resultsStr = NSMutableString()
+//        for prediction in predictions {
+//            print(prediction.attributedFullText.string)
+////            resultsStr.appendFormat("%@\n", prediction.attributedPrimaryText)
+        self.predictions = predictions
+//        }
+        
+//        print("autocomplete result sting. \(resultsStr as String)")
+    }
+    
+    func didFailAutocompleteWithError(_ error: Error) {
+        print(error.localizedDescription)
+    }
+    
 }
