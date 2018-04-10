@@ -8,7 +8,7 @@
 import Alamofire
 
 // Create an Endpoint
-enum UserService{
+enum UserService {
     case getUsers
     case getUser(id: Int)
     case createUser(firstName: String, lastName: String)

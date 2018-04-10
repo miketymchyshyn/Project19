@@ -51,6 +51,7 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
         path = nil
         routes.removeAll()
         navigationItem.rightBarButtonItem?.isEnabled = false
+        whereToView.isHidden = false
     }
     
     // MARK: - showRouteOnMap

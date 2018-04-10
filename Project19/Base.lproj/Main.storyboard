@@ -956,16 +956,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="passenger seats:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPg-S3-Tu1">
-                                <rect key="frame" x="0.0" y="360" width="136" height="33"/>
+                                <rect key="frame" x="119" y="339" width="136" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8q-B0-Hno">
-                                <rect key="frame" x="0.0" y="421" width="375" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="InQ-Gu-PiN">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -988,13 +984,14 @@
                                 <rect key="frame" x="87" y="81" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKu-2t-Wup">
-                                <rect key="frame" x="166" y="355" width="42" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8q-B0-Hno">
+                                <rect key="frame" x="0.0" y="380" width="375" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="MAN-PC-4V9" id="hDh-xc-deN"/>
+                                    <outlet property="delegate" destination="MAN-PC-4V9" id="Rp8-s4-jcM"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="afS-9J-ZeU"/>
@@ -1002,7 +999,6 @@
                     <connections>
                         <outlet property="carNameTextField" destination="goR-xJ-fnL" id="EGo-B4-FKY"/>
                         <outlet property="passengerSeatsPicker" destination="z8q-B0-Hno" id="PER-de-geM"/>
-                        <outlet property="seatsLabel" destination="XKu-2t-Wup" id="3dJ-DC-poh"/>
                         <outlet property="vehicleImage" destination="k7P-ap-bMg" id="beX-Yv-Lv5"/>
                     </connections>
                 </viewController>

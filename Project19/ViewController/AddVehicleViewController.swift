@@ -10,25 +10,44 @@ import UIKit
 
 class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    let maxAllowedPassengerSeatCount = 7
+    
     var user: User!
-    let seats = ["1", "2", "3", "4", "5", "6", "7"]
     var vehiclePhoto: UIImage?
     let imagePicker = UIImagePickerController()
     
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var carNameTextField: UITextField!
-    @IBOutlet weak var seatsLabel: UILabel!
     @IBOutlet weak var passengerSeatsPicker: UIPickerView!
+    var passengerSeatCount = 1
     
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imagePicker.delegate = self
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapOnVehicleImage))
+        vehicleImage.isUserInteractionEnabled = true
+        vehicleImage.addGestureRecognizer(tapGestureRecognizer)
+
+        let tapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(handleTapOnView))
+        view.addGestureRecognizer(tapGestureRecognizerForView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        passengerSeatsPicker.selectRow(2, inComponent: 0, animated: false)
+    }
+    
+    //MARK: - IBAction
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-   
+    
     @IBAction func save(_ sender: UIBarButtonItem) {
         if checkFields() {
-            if let carName = carNameTextField.text, let seatCountText = seatsLabel.text {
-                let seatCount = Int(seatCountText)!
-                let newCar = Car(name: carName, passengerSeatsCount: seatCount)
+            if let carName = carNameTextField.text {
+                let newCar = Car(name: carName, passengerSeatsCount: passengerSeatCount)
                 newCar.setCarPhoto(photo: vehiclePhoto!)
                 user.addCar(car: newCar)
                 if let presenter = (presentingViewController as? UINavigationController)?.viewControllers[1] as? UserDetailsTableViewController {
@@ -44,35 +63,12 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        passengerSeatsPicker.dataSource = self
-        passengerSeatsPicker.delegate = self
-        imagePicker.delegate = self
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapOnVehicleImage))
-        vehicleImage.isUserInteractionEnabled = true
-        vehicleImage.addGestureRecognizer(tapGestureRecognizer)
-        
-        let tapGestureRecognizerForSeats = UITapGestureRecognizer(target: self, action: #selector(handleTapOnSeatsLabel))
-        seatsLabel.isUserInteractionEnabled = true
-        seatsLabel.addGestureRecognizer(tapGestureRecognizerForSeats)
-        
-        let tapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(handleTapOnView))
-        view.addGestureRecognizer(tapGestureRecognizerForView)
-        
-    }
 
     //MARK: - Tap selectors
     @objc func handleTapOnVehicleImage() {
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    @objc func handleTapOnSeatsLabel() {
-        passengerSeatsPicker.isHidden = false
-    }
-    
+
     @objc func handleTapOnView() {
         carNameTextField.resignFirstResponder()
     }
@@ -92,22 +88,23 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return seats.count
+        return maxAllowedPassengerSeatCount
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return seats[row]
+        return String(row + 1)
     }
     
     // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        seatsLabel.text = seats[row]
+        passengerSeatCount = row + 1
+        print(passengerSeatCount)
     }
     
     // MARK: - Check Fields
     private func checkFields() -> Bool {
         //TODO: better cheking.
-        if vehiclePhoto == nil || (carNameTextField.text?.isEmpty)! || (seatsLabel.text == "Set")  {
+        if vehiclePhoto == nil || (carNameTextField.text?.isEmpty)!{
             return false
             } else {
             return true

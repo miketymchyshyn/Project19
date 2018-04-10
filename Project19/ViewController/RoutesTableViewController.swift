@@ -66,6 +66,7 @@ class RoutesTableViewController: UITableViewController {
         routeCell.fromLocation.text = route.path.fromLocationDescription
         routeCell.toLocation.text = route.path.destinationLocationDescription
         routeCell.time.text = dateFormatter.string(from: route.time)
+        routeCell.places.text = "\(route.maxPlaces)"
         
         //for demo purpose first route you create is highlighted yellow as if it is created by you.
         if indexPath.row == 0 {

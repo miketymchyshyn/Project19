@@ -28,12 +28,13 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         initMappoints()
         drawRouteOnMap()
+        placeMarkerForStartLocation()
     }
     
     // MARK: - MKMapViewDelegate
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor(red: 17.0/255.0, green: 147.0/255.0, blue: 255.0/255.0, alpha: 1)
+        renderer.strokeColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         renderer.lineWidth = 5.0
         return renderer
     }
@@ -95,6 +96,14 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         //mapView.showAnnotations([closestPoint1, closestPoint2, proposedpickupAnnotation], animated: true)
         mapView.showAnnotations([proposedpickupAnnotation], animated: true)
     }
+    
+    private func placeMarkerForStartLocation() {
+        assert(route.path.from != nil)
+        let startLocation = route.path.from
+//        let placemark = MKPlacemark(coordinate: startLocation!)
+        let annotation = RouteAnnotation(coordinate: startLocation!, title: "Start")
+        mapView.addAnnotation(annotation)
+    }
     private func initMappoints() {
         for route in route.routes {
             let pointcount = route.polyline.pointCount
@@ -125,6 +134,16 @@ extension CGPoint {
         if t < 0 { t = 0 }
         else if t > 1 { t = 1 }
         return CGPoint(x: p1.x + t * v.x, y: p1.y + t * v.y)
+    }
+}
+
+class RouteAnnotation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String){
+        self.coordinate = coordinate
+        self.title = title
     }
 }
 
