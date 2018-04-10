@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		620ED4E220603FE3002E248E /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620ED4E120603FE3002E248E /* AddVehicleViewController.swift */; };
+		62107A38207CAB9600C1F7C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62107A37207CAB9600C1F7C8 /* Constants.swift */; };
 		6224417E2051A50D0028ED39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224417D2051A50D0028ED39 /* AppDelegate.swift */; };
 		622441802051A50D0028ED39 /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */; };
 		622441832051A50D0028ED39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622441812051A50D0028ED39 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		3B0E3480B42C859E6F37716C /* Pods-Project19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project19.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project19/Pods-Project19.release.xcconfig"; sourceTree = "<group>"; };
 		620ED4E120603FE3002E248E /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
+		62107A37207CAB9600C1F7C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6224417A2051A50D0028ED39 /* Project19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6224417D2051A50D0028ED39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -123,8 +125,8 @@
 		6224417C2051A50D0028ED39 /* Project19 */ = {
 			isa = PBXGroup;
 			children = (
-				622441892051A50D0028ED39 /* Info.plist */,
 				622441812051A50D0028ED39 /* Main.storyboard */,
+				622441892051A50D0028ED39 /* Info.plist */,
 				6224417D2051A50D0028ED39 /* AppDelegate.swift */,
 				62F10632207286DE00B8C04A /* ViewController */,
 				62A0AFE5205C3BE900C3BE5E /* View */,
@@ -149,6 +151,7 @@
 			children = (
 				622441842051A50D0028ED39 /* Assets.xcassets */,
 				622441862051A50D0028ED39 /* LaunchScreen.storyboard */,
+				62107A37207CAB9600C1F7C8 /* Constants.swift */,
 			);
 			path = Additional;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				6224417E2051A50D0028ED39 /* AppDelegate.swift in Sources */,
 				6224419B205850A00028ED39 /* RequsetManager.swift in Sources */,
 				62C85DF6206A8DBE007BA61A /* PickupTableViewController.swift in Sources */,
+				62107A38207CAB9600C1F7C8 /* Constants.swift in Sources */,
 				622441A320592A320028ED39 /* Driver.swift in Sources */,
 				62FF3EF5206A496D0094D0D8 /* Bucko.swift in Sources */,
 				62A0AFEB20601DFA00C3BE5E /* CarTableViewCell.swift in Sources */,

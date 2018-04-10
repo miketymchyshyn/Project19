@@ -10,8 +10,6 @@ import UIKit
 
 class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let maxAllowedPassengerSeatCount = 7
-    
     var user: User!
     var vehiclePhoto: UIImage?
     let imagePicker = UIImagePickerController()
@@ -19,7 +17,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var carNameTextField: UITextField!
     @IBOutlet weak var passengerSeatsPicker: UIPickerView!
-    var passengerSeatCount = 1
+    var passengerSeatCount: Int = 1
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -37,6 +35,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         passengerSeatsPicker.selectRow(2, inComponent: 0, animated: false)
+        passengerSeatCount = 3
     }
     
     //MARK: - IBAction
@@ -88,7 +87,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return maxAllowedPassengerSeatCount
+        return Constants.maxAllowedPassengerSeatCount
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
