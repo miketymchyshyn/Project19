@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		620ED4E220603FE3002E248E /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620ED4E120603FE3002E248E /* AddVehicleViewController.swift */; };
 		62107A38207CAB9600C1F7C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62107A37207CAB9600C1F7C8 /* Constants.swift */; };
+		62107A3A207CE35600C1F7C8 /* PassengersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62107A39207CE35600C1F7C8 /* PassengersViewController.swift */; };
 		6224417E2051A50D0028ED39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224417D2051A50D0028ED39 /* AppDelegate.swift */; };
 		622441802051A50D0028ED39 /* CreateRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */; };
 		622441832051A50D0028ED39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622441812051A50D0028ED39 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		3B0E3480B42C859E6F37716C /* Pods-Project19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project19.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project19/Pods-Project19.release.xcconfig"; sourceTree = "<group>"; };
 		620ED4E120603FE3002E248E /* AddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
 		62107A37207CAB9600C1F7C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		62107A39207CE35600C1F7C8 /* PassengersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengersViewController.swift; sourceTree = "<group>"; };
 		6224417A2051A50D0028ED39 /* Project19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6224417D2051A50D0028ED39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6224417F2051A50D0028ED39 /* CreateRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRouteViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		62107A3B207CE36600C1F7C8 /* Route Details */ = {
+			isa = PBXGroup;
+			children = (
+				62107A39207CE35600C1F7C8 /* PassengersViewController.swift */,
+				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
+				62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */,
+			);
+			path = "Route Details";
+			sourceTree = "<group>";
+		};
 		622441712051A50D0028ED39 = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +171,6 @@
 		62244199205850770028ED39 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6224419A205850A00028ED39 /* RequsetManager.swift */,
 				622441A220592A320028ED39 /* Driver.swift */,
 				622441A62059303F0028ED39 /* Path.swift */,
 				622441A82059305A0028ED39 /* Route.swift */,
@@ -206,10 +217,9 @@
 		62F10632207286DE00B8C04A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				622441AA205957870028ED39 /* RouteDescriptionViewController.swift */,
 				6224419C205852FC0028ED39 /* RoutesTableViewController.swift */,
 				620ED4E120603FE3002E248E /* AddVehicleViewController.swift */,
-				62C85DF5206A8DBE007BA61A /* PickupTableViewController.swift */,
+				62107A3B207CE36600C1F7C8 /* Route Details */,
 				62C85DF9206BB629007BA61A /* Create Route */,
 				62A0AFE2205C39DC00C3BE5E /* User */,
 			);
@@ -219,6 +229,7 @@
 		62FF3EF1206A3E1B0094D0D8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				6224419A205850A00028ED39 /* RequsetManager.swift */,
 				62FF3EEB206A3CCB0094D0D8 /* Endpoint.swift */,
 				62FF3EED206A3D250094D0D8 /* UserService.swift */,
 				62FF3EF4206A496D0094D0D8 /* Bucko.swift */,
@@ -370,6 +381,7 @@
 				62A0AFE920601DED00C3BE5E /* UserTableViewCell.swift in Sources */,
 				62A0AFE720601BFC00C3BE5E /* UserDetailsTableViewController.swift in Sources */,
 				62A0AFED2060206500C3BE5E /* User.swift in Sources */,
+				62107A3A207CE35600C1F7C8 /* PassengersViewController.swift in Sources */,
 				6224417E2051A50D0028ED39 /* AppDelegate.swift in Sources */,
 				6224419B205850A00028ED39 /* RequsetManager.swift in Sources */,
 				62C85DF6206A8DBE007BA61A /* PickupTableViewController.swift in Sources */,

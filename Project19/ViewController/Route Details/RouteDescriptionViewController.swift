@@ -13,22 +13,28 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var route: Route!
-    
     //Little white square in a middle of map view. 
     @IBOutlet weak var centerView: UIView!
     
     private var mappoints = [MKMapPoint]()
     
-    @IBAction func placeAnnotation(sender: UIButton) {
-        placeProposedPickupLocation()
-    }
+
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         initMappoints()
         drawRouteOnMap()
         placeMarkerForStartLocation()
+    }
+    
+    @IBAction func placeAnnotation(sender: UIButton) {
+        placeProposedPickupLocation()
+    }
+    
+    @IBAction func handleSwipeToSeePassengers(_ sender: UISwipeGestureRecognizer) {
+        performSegue(withIdentifier: "SegueToPassengersTable", sender: self)
     }
     
     // MARK: - MKMapViewDelegate

@@ -60,6 +60,7 @@ class UserDetailsTableViewController: UITableViewController {
                 } else {
                     carCell.carImage.image = UIImage(named: "noPhoto")
                 }
+                carCell.carImage.gestureRecognizers?.removeAll()
             } else {
                 carCell.carName.text = addCarLabelText
                 carCell.carImage.image = UIImage(named: "addCar")

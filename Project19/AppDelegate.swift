@@ -15,16 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        TODO: load user from saved token
-        let getUserRequest = UserService.getUser(id: 42)
-        let request = Bucko.shared.request(endpoint: getUserRequest)
-        { response in
-            if response.result.isSuccess {
-                let json = JSON(response.result.value!)
-            } else {
-                // Handle error
-            }
-        }
-
+//        let getUserRequest = UserService.getUser(id: 42)
+//        let request = Bucko.shared.request(endpoint: getUserRequest)
+//        { response in
+//            if response.result.isSuccess {
+//                let json = JSON(response.result.value!)
+//            } else {
+//                // Handle error
+//            }
+//        }
         return true
     }
 

@@ -33,6 +33,7 @@ class RoutesTableViewController: UITableViewController {
         let muser = User(name: "David Mockup")
         muser.setPhoto(image: UIImage(named: "DavidMockupPhoto")! )
         loggedInUser = muser
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,9 +70,9 @@ class RoutesTableViewController: UITableViewController {
         routeCell.places.text = "\(route.maxPlaces)"
         
         //for demo purpose first route you create is highlighted yellow as if it is created by you.
-        if indexPath.row == 0 {
-            routeCell.layer.backgroundColor = UIColor.yellow.cgColor
-        }
+//        if indexPath.row == 0 {
+//            routeCell.layer.backgroundColor = UIColor.yellow.cgColor
+//        }
         
         return routeCell
     }
@@ -79,12 +80,13 @@ class RoutesTableViewController: UITableViewController {
     //MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: pick which segue to perform based on whether loggedInUser is the driver for selected route or not.
+        
         //for demo. first route is yours other routes are form other drivers.
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "SegueToPickup", sender: self)
-        } else {
+//        if indexPath.row == 0 {
+//            performSegue(withIdentifier: "SegueToPickup", sender: self)
+//        } else {
             performSegue(withIdentifier: "SegueToViewRouteDescription", sender: routes[indexPath.row])
-        }
+//        }
     }
     
     // MARK: - Navigation
@@ -106,7 +108,7 @@ class RoutesTableViewController: UITableViewController {
         }
     }
     
-    private func setupDateFormat(){
+    private func setupDateFormat() {
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
     }

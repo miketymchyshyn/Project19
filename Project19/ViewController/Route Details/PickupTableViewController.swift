@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate{
+class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -105,6 +105,7 @@ class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewData
         passengerCell.markerView.layer.backgroundColor = pickupAnnotation.markerColor.cgColor
         passengerCell.name.text = pickupAnnotation.title
         passengerCell.location.text = "nothing yet..."
+        cell.selectionStyle = .none
         return cell
     }
     

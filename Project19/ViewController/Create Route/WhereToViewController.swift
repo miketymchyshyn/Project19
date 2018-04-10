@@ -17,6 +17,7 @@ let defaultFieldHeight: CGFloat = 30
 class WhereToViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     var currentMapRegion: MKCoordinateRegion!
     
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var whereToField: UITextField!
     @IBOutlet weak var fromWhereField: UITextField!
@@ -25,25 +26,35 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var addStopField: UITextField!
     @IBOutlet weak var spacingBetweenFromWhereAndWhereTo: NSLayoutConstraint!
     @IBOutlet weak var addStopButtonOutlet: UIButton!
+    @IBOutlet weak var deleteStopButtonOutlet: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func addStopButton(_ sender: UIButton) {
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing + defaultFieldHeight + defaultFieldSpacing
+        
         addStopStackView.isHidden = false
         addStopButtonOutlet.isHidden = true
+        topViewHeightConstraint.constant = topViewHeightConstraint.constant + (defaultFieldSpacing + defaultFieldHeight)
+        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
+        addStopField.becomeFirstResponder()
     }
     
     @IBAction func deleteStopButton(_ sender: UIButton) {
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
         addStopStackView.isHidden = true
         addStopButtonOutlet.isHidden = false
+        path.stop = nil
+        path.stopLocationDescription = nil
+        topViewHeightConstraint.constant = topViewHeightConstraint.constant - (defaultFieldSpacing + defaultFieldHeight)
+        deleteStopButtonOutlet.transform = CGAffineTransform(rotationAngle: 45 * CGFloat.pi/180)
     }
 
     //map items that are displayed while you type in locaion name.
     private var requsetRelatedMapItems = [MKMapItem]()
     private var path = Path()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
@@ -58,6 +69,10 @@ class WhereToViewController: UIViewController, UITableViewDataSource, UITableVie
         addStopField.delegate = self
         
         spacingBetweenFromWhereAndWhereTo.constant = defaultFieldSpacing
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        self.view.insertSubview(blurEffectView, at: 0)
     }
     
     // MARK: - UITableViewDataSource

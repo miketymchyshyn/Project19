@@ -25,6 +25,8 @@ class SignUpTableViewController: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAboutTextView()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapOnView))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     private func setupAboutTextView(){
@@ -48,6 +50,11 @@ class SignUpTableViewController: UITableViewController, UITextViewDelegate {
             textView.text = textViewPlaceholderText
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    @objc
+    func handleTapOnView(){
+        self.view.endEditing(true)
     }
 }
 
