@@ -773,11 +773,15 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="f4o-hh-Tj0">
                                             <rect key="frame" x="0.0" y="-5" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <gestureRecognizers/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
                                                     <integer key="value" value="64"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="D91-pT-HEK" appends="YES" id="dAg-ip-3QP"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60P-Ug-y9T">
                                             <rect key="frame" x="136" y="11" width="223" height="21"/>
@@ -829,6 +833,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acn-a6-7ln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="D91-pT-HEK">
+                    <connections>
+                        <action selector="handleTapOnUserImage:" destination="p7d-Tg-nVu" id="bjT-ZO-DKZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="-546.47676161919048"/>
         </scene>

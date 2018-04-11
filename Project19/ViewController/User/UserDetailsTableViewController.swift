@@ -15,6 +15,20 @@ let vehiclesSectionTitle = "Your Cars & Motorcycles:"
 class UserDetailsTableViewController: UITableViewController {
     
     var user: User!
+    let picker = UIImagePickerController()
+    
+    //    MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //image picker setup.
+        if UIImagePickerController.isSourceTypeAvailable( .camera) {
+            picker.sourceType = .camera
+            if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                picker.cameraDevice = .front
+            }
+        }
+    }
+    
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,6 +114,12 @@ class UserDetailsTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - UIImagePicker
+    @IBAction func handleTapOnUserImage(_ sender: UITapGestureRecognizer) {
+        present(picker, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -107,5 +127,12 @@ class UserDetailsTableViewController: UITableViewController {
         if let addVehicleVC = segue.destination as? AddVehicleViewController {
             addVehicleVC.user = user
         }
+    }
+}
+
+extension UserDetailsTableViewController : UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        //TODO: Set user image.
     }
 }

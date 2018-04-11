@@ -180,10 +180,8 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
         
         //Send POST reques to _/routes.
         RequestManager.shared.addRoute(route: route)
-        
         navigationController?.popViewController(animated: true)
     }
-    
     
     //MARK: - Picker View Controller presentation
     func presentPickSeatsViewController() {
