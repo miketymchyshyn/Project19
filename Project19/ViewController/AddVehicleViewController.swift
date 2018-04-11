@@ -14,6 +14,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     var vehiclePhoto: UIImage?
     let imagePicker = UIImagePickerController()
     
+    
     @IBOutlet weak var vehicleImage: UIImageView!
     @IBOutlet weak var carNameTextField: UITextField!
     @IBOutlet weak var passengerSeatsPicker: UIPickerView!
@@ -23,6 +24,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable( .camera) {
+            imagePicker.sourceType = .camera
+        }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapOnVehicleImage))
         vehicleImage.isUserInteractionEnabled = true
