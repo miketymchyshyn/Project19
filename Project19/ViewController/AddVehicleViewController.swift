@@ -20,16 +20,34 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     @IBOutlet weak var passengerSeatCountLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
-
+    var alertContorller: UIAlertController!
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        if UIImagePickerController.isSourceTypeAvailable( .camera) {
-            imagePicker.sourceType = .camera
-        }
+        
         stepperSetup()
+        
+        alertContorller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertContorller.addAction(UIAlertAction(title: "Take Photo", style: .default) {
+            [unowned self]
+            alertAction in
+            if UIImagePickerController.isSourceTypeAvailable( .camera) {
+                self.imagePicker.sourceType = .camera
+            }
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        alertContorller.addAction(UIAlertAction(title: "Choose from Library", style: .default) {
+            [unowned self]
+            alertAction in
+            if UIImagePickerController.isSourceTypeAvailable( .photoLibrary ) {
+                self.imagePicker.sourceType = .photoLibrary
+            }
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        alertContorller.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     }
     
     //MARK: - IBAction
@@ -76,7 +94,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
     // MARK: - UIGestureRecognizer
     @IBAction func handleTapOnVehicleImage(_ sender: UITapGestureRecognizer) {
-        present(imagePicker, animated: true, completion: nil)
+        present(alertContorller, animated: true, completion: nil)
     }
    
     @IBAction func handleTapOnView(_ sender: UITapGestureRecognizer) {
@@ -92,6 +110,10 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         passengerSeatCountLabel.text = String(Int(stepper.value))
     }
+    
+    //MARK: - Actionsheet
+    
+    
 }
 
 
