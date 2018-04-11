@@ -33,7 +33,7 @@ class UserDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            // return user cell for index zero
+            // return user cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
             guard let userCell = cell as? UserTableViewCell else {
                 fatalError()
@@ -47,21 +47,25 @@ class UserDetailsTableViewController: UITableViewController {
             }
             return userCell
         } else {
-            // return car cell for index one and above
+            // return car cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "CarCell", for: indexPath)
             guard let carCell = cell as? CarTableViewCell else {
                 fatalError()
             }
             //set up car Cell
             if indexPath.row < user.cars.count {
+                //user's cars
                 carCell.carName.text = user.cars[indexPath.row].name
                 if let carPhoto = user.cars[indexPath.row].carPhoto {
                     carCell.carImage.image = carPhoto
                 } else {
                     carCell.carImage.image = UIImage(named: "noPhoto")
                 }
+                carCell.carImage.layer.cornerRadius = carCell.carImage.frame.height / 4
+                carCell.carImage.clipsToBounds = true
                 carCell.carImage.gestureRecognizers?.removeAll()
             } else {
+                //"add car cell."
                 carCell.carName.text = addCarLabelText
                 carCell.carImage.image = UIImage(named: "addCar")
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapAddVehicle))
