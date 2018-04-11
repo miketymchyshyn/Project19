@@ -7,10 +7,7 @@
 //
 
 import UIKit
-let addCarLabelText = "Add Car"
-let userRowHeight: CGFloat = 140
-let carRowHeight: CGFloat = 100
-let vehiclesSectionTitle = "Your Cars & Motorcycles:"
+
 
 class UserDetailsTableViewController: UITableViewController {
     
@@ -80,7 +77,7 @@ class UserDetailsTableViewController: UITableViewController {
                 carCell.carImage.gestureRecognizers?.removeAll()
             } else {
                 //"add car cell."
-                carCell.carName.text = addCarLabelText
+                carCell.carName.text = Constants.addCarLabelText
                 carCell.carImage.image = UIImage(named: "addCar")
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapAddVehicle))
                 carCell.carImage.isUserInteractionEnabled = true
@@ -98,9 +95,9 @@ class UserDetailsTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return userRowHeight
+            return Constants.userRowHeight
         } else {
-            return carRowHeight
+            return Constants.carRowHeight
         }
     }
     
@@ -108,7 +105,7 @@ class UserDetailsTableViewController: UITableViewController {
         if section == 0 {
             return nil
         } else if section == 1 {
-            return vehiclesSectionTitle
+            return Constants.vehiclesSectionTitle
         } else {
             return nil
         }
@@ -132,7 +129,7 @@ class UserDetailsTableViewController: UITableViewController {
 
 extension UserDetailsTableViewController : UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        //TODO: Set user image.
+        let _ = info[UIImagePickerControllerOriginalImage] as? UIImage
+        //TODO: Implement setting user image.
     }
 }

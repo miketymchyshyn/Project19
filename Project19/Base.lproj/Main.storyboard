@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f7Y-Ep-hca">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dkb-JO-ccI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -229,6 +229,9 @@
                                     <constraint firstAttribute="height" constant="360" id="5kH-j1-lwJ"/>
                                     <constraint firstAttribute="width" constant="375" id="ams-cl-3i2"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Xoh-tj-kvf" id="NLV-CF-jnN"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QG-1H-ciJ">
                                 <rect key="frame" x="122" y="432" width="130" height="50"/>
@@ -251,15 +254,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="^" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X41-Zw-nfX">
-                                        <rect key="frame" x="151" y="0.0" width="72" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="2Ml-zs-bZo" appends="YES" id="fGf-ed-Lfb"/>
@@ -314,7 +310,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="3Ma-ED-u9C" appends="YES" id="lvF-H9-0fS"/>
@@ -439,6 +435,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="r4s-T9-u3B" id="NdO-Iy-ZI1"/>
+                                    <outlet property="delegate" destination="r4s-T9-u3B" id="HAn-VK-Lm4"/>
+                                </connections>
                             </tableView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMF-hO-y8h">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
@@ -457,6 +457,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="whereToTextFieldChanged:" destination="r4s-T9-u3B" eventType="editingChanged" id="A5e-KC-cTb"/>
+                                                    <outlet property="delegate" destination="r4s-T9-u3B" id="abb-fI-3QS"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFk-qV-yuk">
@@ -489,6 +490,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="whereToTextFieldChanged:" destination="r4s-T9-u3B" eventType="editingChanged" id="3Lh-gH-gkL"/>
+                                                    <outlet property="delegate" destination="r4s-T9-u3B" id="c5u-zb-x8V"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yah-Js-xWK">
@@ -521,6 +523,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="whereToTextFieldChanged:" destination="r4s-T9-u3B" eventType="editingChanged" id="wst-Qx-yV6"/>
+                                                    <outlet property="delegate" destination="r4s-T9-u3B" id="tZB-gM-77r"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5P-VF-pm9">
@@ -896,8 +899,8 @@
                                     <action selector="stepperValueChanged:" destination="MAN-PC-4V9" eventType="valueChanged" id="BQV-xA-16k"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYc-Ts-MhX">
-                                <rect key="frame" x="174" y="339" width="42" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYc-Ts-MhX">
+                                <rect key="frame" x="174" y="340" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

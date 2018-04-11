@@ -27,8 +27,8 @@ class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewData
     let passenger3 = Passenger(name: "Bob", pickupLocation: CLLocationCoordinate2D(latitude: 49.5, longitude: 28.5))
     let passenger4 = Passenger(name: "Alice", pickupLocation: CLLocationCoordinate2D(latitude: 49.5, longitude: 29.0))
     var passengers = [Passenger]()
+   
     //end of debug things.
-    
     var pickupAnnotations = [PickupAnnotation]()
     var locationManager = CLLocationManager()
     
@@ -60,15 +60,6 @@ class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewData
         for pickupAnnotation in pickupAnnotations {
             placePickUpMarker(for: pickupAnnotation)
         }
-        
-        //allocate rows in table view
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func placePickUpMarker(for pickupAnnotation: PickupAnnotation){
@@ -98,22 +89,19 @@ class PickupViewController: UIViewController, MKMapViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //TODO: implement
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PassengerCell", for: indexPath)
-        let passengerCell = cell as! PassengerTableViewCell
+        let passengerCell = tableView.dequeueReusableCell(withIdentifier: "PassengerCell", for: indexPath) as! PassengerTableViewCell
         let pickupAnnotation = pickupAnnotations[indexPath.row]
         passengerCell.markerView.layer.backgroundColor = pickupAnnotation.markerColor.cgColor
         passengerCell.name.text = pickupAnnotation.title
         passengerCell.location.text = "nothing yet..."
-        cell.selectionStyle = .none
-        return cell
+        passengerCell.selectionStyle = .none
+        return passengerCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pickupCoordinate = pickupAnnotations[indexPath.row].coordinate
         mapView.setCenter(pickupCoordinate, animated: true)
     }
-
 }
 
 extension UIColor {

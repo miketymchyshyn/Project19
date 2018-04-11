@@ -23,7 +23,6 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
         initMappoints()
         drawRouteOnMap()
         placeMarkerForStartLocation()
@@ -59,29 +58,11 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
             pointsAndDistances.append(PointAndDistance(point: point, distance: distance))
         }
         
-        pointsAndDistances.sort { (lhs: PointAndDistance, rhs: PointAndDistance) -> Bool in
-            return lhs.distance < rhs.distance
-        }
+        pointsAndDistances.sort { $0.distance < $1.distance }
         //create CGPoints for line segment points
         let firstPointLocation = CLLocationCoordinate2D(latitude: pointsAndDistances[0].point.x, longitude: pointsAndDistances[0].point.y)
         let secondPointLocation = CLLocationCoordinate2D(latitude: pointsAndDistances[1].point.x, longitude: pointsAndDistances[1].point.y)
-        //uncomment to show annotation for line segment points.
-        //        //place annotaions for two closest points
-        //        let closestPoint1 = MKPointAnnotation()
-        //        closestPoint1.coordinate = firstPointLocation
-        //        let clp1 = MKPlacemark(coordinate: firstPointLocation, addressDictionary: nil)
-        //
-        //        if let location = clp1.location {
-        //            closestPoint1.coordinate = location.coordinate
-        //        }
-        //        let closestPoint2 = MKPointAnnotation()
-        //        closestPoint2.coordinate = secondPointLocation
-        //        let clp2 = MKPlacemark(coordinate: secondPointLocation, addressDictionary: nil)
-        //
-        //        if let location = clp2.location {
-        //            closestPoint2.coordinate = location.coordinate
-        //        }
-        //
+
         //CGPoints for line segment coordinates
         let firstPoint = mapView.convert(firstPointLocation, toPointTo: nil)
         let secondPoint = mapView.convert(secondPointLocation, toPointTo: nil)
@@ -98,18 +79,17 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
         if let location = pickupPlacemark.location {
             proposedpickupAnnotation.coordinate = location.coordinate
         }
-        //uncomment to show annotation for line segment points.
-        //mapView.showAnnotations([closestPoint1, closestPoint2, proposedpickupAnnotation], animated: true)
+        
         mapView.showAnnotations([proposedpickupAnnotation], animated: true)
     }
     
     private func placeMarkerForStartLocation() {
         assert(route.path.from != nil)
         let startLocation = route.path.from
-//        let placemark = MKPlacemark(coordinate: startLocation!)
         let annotation = RouteAnnotation(coordinate: startLocation!, title: "Start")
         mapView.addAnnotation(annotation)
     }
+    
     private func initMappoints() {
         for route in route.routes {
             let pointcount = route.polyline.pointCount

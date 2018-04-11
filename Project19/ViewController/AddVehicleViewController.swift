@@ -68,9 +68,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
             }
         } else {
             let alert = UIAlertController(title: "Incomplete car info.", message: "Please set image and name", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-                print("alert for incomplete info.")
-            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -88,8 +86,8 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     private func checkFields() -> Bool {
         if vehiclePhoto == nil || (carNameTextField.text?.isEmpty)!{
             return false
-            } else {
-            return true
+        } else {
+        return true
         }
     }
     // MARK: - UIGestureRecognizer
@@ -110,10 +108,7 @@ class AddVehicleViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         passengerSeatCountLabel.text = String(Int(stepper.value))
     }
-    
-    //MARK: - Actionsheet
-    
-    
+        
 }
 
 

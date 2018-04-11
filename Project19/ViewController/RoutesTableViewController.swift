@@ -57,10 +57,8 @@ class RoutesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath)
-        guard let routeCell = cell as? RouteTableViewCell else {
-            fatalError("Cell downcast failed.")
-        }
+        let routeCell = tableView.dequeueReusableCell(withIdentifier: routeCellIdentifier, for: indexPath) as! RouteTableViewCell
+     
         let route = routes[indexPath.row]
         routeCell.driverName.text = route.driver.driverName
         routeCell.driverCar.text = route.driver.driverCarName
@@ -69,7 +67,7 @@ class RoutesTableViewController: UITableViewController {
         routeCell.time.text = dateFormatter.string(from: route.time)
         routeCell.places.text = "\(route.maxPlaces)"
         
-        //for demo purpose first route you create is highlighted yellow as if it is created by you.
+//        for demo purpose first route you create is highlighted yellow as if it is created by you.
 //        if indexPath.row == 0 {
 //            routeCell.layer.backgroundColor = UIColor.yellow.cgColor
 //        }

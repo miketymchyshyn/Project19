@@ -31,7 +31,6 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         mapView.showsUserLocation = true
@@ -178,7 +177,6 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
         
         let route = Route(driver: driver!, path: path!, time: routeTime, maxPlaces: maxPassengerCount, routes: routes)
         
-        //Send POST reques to _/routes.
         RequestManager.shared.addRoute(route: route)
         navigationController?.popViewController(animated: true)
     }
