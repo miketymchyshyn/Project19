@@ -15,6 +15,8 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var whereToView: UIView!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var MVToBottom: NSLayoutConstraint!
+  
+    var blurEffectView: UIVisualEffectView!
     
     /// specific driver that creates a route.
     var driver: Driver!
@@ -42,6 +44,15 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(whereToTapped))
         whereToView.addGestureRecognizer(tapGestureRecognizer)
+      
+      let blurEffect = UIBlurEffect(style: .prominent)
+      blurEffectView = UIVisualEffectView(effect: blurEffect)
+//      blurEffectView.backgroundColor = UIColor.green.withAlphaComponent(0.2)
+      blurEffectView.frame = confirmButton.frame
+      blurEffectView.layer.cornerRadius = 8.0
+      blurEffectView.clipsToBounds = true
+      blurEffectView.isHidden = true
+      view.insertSubview(blurEffectView, belowSubview: confirmButton)
     }
     
     
@@ -167,6 +178,7 @@ class CreateRouteViewController: UIViewController, MKMapViewDelegate {
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
         confirmButton.isHidden = true
+        blurEffectView.isHidden = true
         path = nil
     }
     

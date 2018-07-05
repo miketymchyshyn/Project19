@@ -27,6 +27,7 @@ class PickSeatsViewController: UIViewController {
         if let createRouteViewController = (presentingViewController as? UINavigationController)?.viewControllers[1] as? CreateRouteViewController{
             createRouteViewController.setMaxPassengerCount(to: passengerSeatCount)
             createRouteViewController.confirmButton.isHidden = false
+            createRouteViewController.blurEffectView.isHidden = false
         }
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
