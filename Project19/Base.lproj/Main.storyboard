@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dkb-JO-ccI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dkb-JO-ccI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--routes-->
+        <!--Routes-->
         <scene sceneID="tkx-8I-C9y">
             <objects>
                 <tableViewController id="aVc-gg-Uwq" customClass="RoutesTableViewController" customModule="Project19" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,7 +110,7 @@
                             <outlet property="delegate" destination="aVc-gg-Uwq" id="Rcd-KG-LTB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="routes" id="EAL-GL-tya">
+                    <navigationItem key="navigationItem" title="Routes" id="EAL-GL-tya">
                         <barButtonItem key="leftBarButtonItem" title="User Details" id="3dR-nH-njm">
                             <connections>
                                 <action selector="userDetails:" destination="aVc-gg-Uwq" id="AgD-4q-fvn"/>
@@ -125,7 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addRouteButton" destination="JkI-1c-HI9" id="0aD-cR-e63"/>
-                        <segue destination="Xoh-tj-kvf" kind="show" identifier="SegueToViewRouteDescription" id="UjM-fB-6vh"/>
+                        <segue destination="Xoh-tj-kvf" kind="presentation" identifier="SegueToViewRouteDescription" id="UjM-fB-6vh"/>
                         <segue destination="p7d-Tg-nVu" kind="show" identifier="SegueToUserDetails" id="z8h-Ac-5Gn"/>
                         <segue destination="cfX-D9-cKf" kind="show" identifier="SegueToPickup" id="Hhk-GK-5iS"/>
                     </connections>
@@ -223,58 +222,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DMM-0Z-pQ7">
-                                <rect key="frame" x="0.0" y="64" width="375" height="360"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="5kH-j1-lwJ"/>
-                                    <constraint firstAttribute="width" constant="375" id="ams-cl-3i2"/>
-                                </constraints>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMM-0Z-pQ7">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <connections>
                                     <outlet property="delegate" destination="Xoh-tj-kvf" id="NLV-CF-jnN"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QG-1H-ciJ">
-                                <rect key="frame" x="122" y="432" width="130" height="50"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JES-0T-jrP">
+                                <rect key="frame" x="182" y="338" width="10" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Join"/>
-                                <connections>
-                                    <action selector="placeAnnotationWithSender:" destination="Xoh-tj-kvf" eventType="touchUpInside" id="ftB-OR-u3a"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cvc-5A-NHc">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="swipe up to see passengers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdJ-ew-2eg">
-                                        <rect key="frame" x="8" y="15" width="359" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="2Ml-zs-bZo" appends="YES" id="fGf-ed-Lfb"/>
-                                </connections>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JES-0T-jrP">
-                                <rect key="frame" x="182" y="239" width="10" height="10"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="BMK-hw-MnZ">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Stops🏁" width="42" style="plain" id="sU3-fT-7Sg">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem title="Place Marker 👍" width="300" style="done" id="gcX-aq-6CO">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="joinTapped:" destination="Xoh-tj-kvf" id="7uB-Nv-Ixg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="🦈Chat" width="42" style="plain" id="pH9-Ip-2H9">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="8gT-CY-4C7">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="S0y-lV-esz">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="iJn-ma-lvF">
+                                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="closeTapped:" destination="Xoh-tj-kvf" id="qVC-b6-Mwg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="cfa-7N-61M">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ajR-WF-H06">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="DMM-0Z-pQ7" firstAttribute="top" secondItem="h5w-2n-1sb" secondAttribute="top" id="UGu-Rr-dwP"/>
-                            <constraint firstItem="DMM-0Z-pQ7" firstAttribute="leading" secondItem="h5w-2n-1sb" secondAttribute="leading" id="v69-Vf-7V0"/>
+                            <constraint firstItem="DMM-0Z-pQ7" firstAttribute="top" secondItem="h5w-2n-1sb" secondAttribute="top" id="Bxa-oI-d3o"/>
+                            <constraint firstItem="h5w-2n-1sb" firstAttribute="bottom" secondItem="DMM-0Z-pQ7" secondAttribute="bottom" id="MV1-Pd-o7X"/>
+                            <constraint firstItem="DMM-0Z-pQ7" firstAttribute="trailing" secondItem="h5w-2n-1sb" secondAttribute="trailing" id="bGW-0R-ZAw"/>
+                            <constraint firstItem="DMM-0Z-pQ7" firstAttribute="leading" secondItem="h5w-2n-1sb" secondAttribute="leading" id="v1d-ag-XKh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h5w-2n-1sb"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="centerView" destination="JES-0T-jrP" id="MEL-nS-iMZ"/>
                         <outlet property="mapView" destination="DMM-0Z-pQ7" id="qRL-sX-enO"/>
@@ -282,11 +300,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxy-g3-mHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="2Ml-zs-bZo">
-                    <connections>
-                        <action selector="handleSwipeToSeePassengers:" destination="Xoh-tj-kvf" id="pbO-uK-bkv"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-343.19999999999999" y="1199.5502248875564"/>
         </scene>
