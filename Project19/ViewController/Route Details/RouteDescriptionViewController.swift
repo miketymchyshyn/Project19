@@ -21,10 +21,19 @@ class RouteDescriptionViewController: UIViewController, MKMapViewDelegate {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    UIApplication.shared.statusBarStyle = .lightContent
     initMappoints()
     drawRouteOnMap()
     placeMarkerForStartLocation()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    UIApplication.shared.statusBarStyle = .lightContent
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    UIApplication.shared.statusBarStyle = .default
   }
   
   // MARK: - @IBAction
